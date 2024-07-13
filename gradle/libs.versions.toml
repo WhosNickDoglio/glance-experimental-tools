@@ -6,8 +6,8 @@ glance = "1.1.0"
 glancesnapshot = "11101881" # a single character = no snapshot
 
 # gradlePlugin and lint need to be updated together
-gradlePlugin = "8.5.0"
-lintMinCompose = "31.5.0"
+gradlePlugin = "8.5.1"
+lintMinCompose = "31.5.1"
 
 ktlint = "0.42.1"
 kotlin = "2.0.0"
