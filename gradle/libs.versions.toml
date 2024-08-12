@@ -6,11 +6,11 @@ glance = "1.1.0"
 glancesnapshot = "11101881" # a single character = no snapshot
 
 # gradlePlugin and lint need to be updated together
-gradlePlugin = "8.5.1"
-lintMinCompose = "31.5.1"
+gradlePlugin = "8.5.2"
+lintMinCompose = "31.5.2"
 
 ktlint = "0.42.1"
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 coroutines = "1.8.1"
 
 androidxtest-core = "1.6.1"
@@ -59,7 +59,7 @@ dokka = "org.jetbrains.dokka:dokka-gradle-plugin:1.9.10"
 
 androidx-core = "androidx.core:core-ktx:1.13.1"
 androidx-core-remoteviews = "androidx.core:core-remoteviews:1.1.0"
-androidx-activity-compose = "androidx.activity:activity-compose:1.9.0"
+androidx-activity-compose = "androidx.activity:activity-compose:1.9.1"
 
 androidx-test-core = { module = "androidx.test:core-ktx", version.ref = "androidxtest-core" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxtest-runner" }
