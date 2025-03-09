@@ -26,11 +26,11 @@ kotlin {
 
 android {
     namespace 'com.google.android.glance.appwidget.configuration'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
-        minSdk 21
-        targetSdk 34
+        minSdk 26
+        targetSdk 35
 
         consumerProguardFiles "consumer-rules.pro"
 

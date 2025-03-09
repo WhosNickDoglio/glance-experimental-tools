@@ -1,17 +1,17 @@
 [versions]
 composesnapshot = "-" # a single character = no snapshot
-androidx-compose-bom = "2024.12.01"
+androidx-compose-bom = "2025.02.00"
 
 glance = "1.1.1"
 glancesnapshot = "11101881" # a single character = no snapshot
 
 # gradlePlugin and lint need to be updated together
-gradlePlugin = "8.7.3"
-lintMinCompose = "31.7.3"
+gradlePlugin = "8.9.0"
+lintMinCompose = "31.9.0"
 
 ktlint = "0.42.1"
-kotlin = "2.1.0"
-coroutines = "1.9.0"
+kotlin = "2.1.10"
+coroutines = "1.10.1"
 
 androidxtest-core = "1.6.1"
 androidxtest-rules = "1.6.1"
