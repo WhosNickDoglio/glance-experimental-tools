@@ -27,7 +27,6 @@ buildscript {
 
     dependencies {
         classpath libs.android.tools.build.gradle
-        classpath libs.android.gradlePlugin
         classpath libs.kotlin.gradlePlugin
 
         classpath libs.gradleMavenPublishPlugin
@@ -86,15 +85,6 @@ allprojects {
         mavenCentral()
         maven {
             url "https://plugins.gradle.org/m2/"
-        }
-        def composeSnapshot = libs.versions.composesnapshot.get()
-        if (composeSnapshot.length() > 1) {
-            maven { url "https://androidx.dev/snapshots/builds/$composeSnapshot/artifacts/repository/" }
-        }
-
-        def glanceSnapshot = libs.versions.glancesnapshot.get()
-        if (glanceSnapshot.length() > 1) {
-            maven { url "https://androidx.dev/snapshots/builds/$glanceSnapshot/artifacts/repository" }
         }
     }
 }

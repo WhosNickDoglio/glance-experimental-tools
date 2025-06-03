@@ -21,14 +21,12 @@ import android.appwidget.AppWidgetHostView
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Rect
-import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
@@ -48,7 +46,6 @@ import kotlinx.coroutines.runBlocking
  * When using an emulator, you may use Espresso's `captureToBitmap` to ensure that the corner radius
  * is captured.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 public class GlanceScreenshotTestActivity : Activity() {
     private var state: Any? = null
     private var size: DpSize = DpSize(Dp.Unspecified, Dp.Unspecified)
@@ -141,7 +138,6 @@ public class GlanceScreenshotTestActivity : Activity() {
     private fun Dp.toPixels(displayMetrics: DisplayMetrics) =
         TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, displayMetrics).toInt()
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private class TestHostView(context: Context) : AppWidgetHostView(context) {
         init {
             // Prevent asynchronous inflation of the App Widget
