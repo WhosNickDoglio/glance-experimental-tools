@@ -22,6 +22,7 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.publish)
+    alias(libs.plugins.dependencyAnalysis)
 }
 
 kotlin {

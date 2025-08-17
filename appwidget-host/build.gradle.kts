@@ -23,6 +23,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.publish)
     alias(libs.plugins.metalava)
+    alias(libs.plugins.dependencyAnalysis)
 }
 
 kotlin {
