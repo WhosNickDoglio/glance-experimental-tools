@@ -74,38 +74,39 @@ public fun AppWidgetHostState.requestPin(
  * @return the result of the operation with the image URI if successful
  */
 @RequiresApi(Build.VERSION_CODES.Q)
-public suspend fun AppWidgetHostView.exportSnapshot(fileName: String? = null): Result<Uri> = runCatching {
-    withContext(Dispatchers.IO) {
-        val bitmap = (this@exportSnapshot as View).toBitmap()
-        val collection =
-            MediaStore.Images.Media.getContentUri(
-                MediaStore.VOLUME_EXTERNAL_PRIMARY,
-            )
-        val dirDest = File(Environment.DIRECTORY_PICTURES, SNAPSHOTS_FOLDER)
-        val date = System.currentTimeMillis()
-        val name = fileName ?: getSnapshotName(date)
-        val newImage =
-            ContentValues().apply {
-                put(MediaStore.Images.Media.DISPLAY_NAME, "$name.png")
-                put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
-                put(MediaStore.MediaColumns.DATE_ADDED, date)
-                put(MediaStore.MediaColumns.DATE_MODIFIED, date)
-                put(MediaStore.MediaColumns.SIZE, bitmap.byteCount)
-                put(MediaStore.MediaColumns.WIDTH, bitmap.width)
-                put(MediaStore.MediaColumns.HEIGHT, bitmap.height)
-                put(MediaStore.MediaColumns.RELATIVE_PATH, "$dirDest${File.separator}")
-                put(MediaStore.Images.Media.IS_PENDING, 1)
+public suspend fun AppWidgetHostView.exportSnapshot(fileName: String? = null): Result<Uri> =
+    runCatching {
+        withContext(Dispatchers.IO) {
+            val bitmap = (this@exportSnapshot as View).toBitmap()
+            val collection =
+                MediaStore.Images.Media.getContentUri(
+                    MediaStore.VOLUME_EXTERNAL_PRIMARY,
+                )
+            val dirDest = File(Environment.DIRECTORY_PICTURES, SNAPSHOTS_FOLDER)
+            val date = System.currentTimeMillis()
+            val name = fileName ?: getSnapshotName(date)
+            val newImage =
+                ContentValues().apply {
+                    put(MediaStore.Images.Media.DISPLAY_NAME, "$name.png")
+                    put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+                    put(MediaStore.MediaColumns.DATE_ADDED, date)
+                    put(MediaStore.MediaColumns.DATE_MODIFIED, date)
+                    put(MediaStore.MediaColumns.SIZE, bitmap.byteCount)
+                    put(MediaStore.MediaColumns.WIDTH, bitmap.width)
+                    put(MediaStore.MediaColumns.HEIGHT, bitmap.height)
+                    put(MediaStore.MediaColumns.RELATIVE_PATH, "$dirDest${File.separator}")
+                    put(MediaStore.Images.Media.IS_PENDING, 1)
+                }
+            context.contentResolver.insert(collection, newImage)!!.apply {
+                context.contentResolver.openOutputStream(this, "w").use {
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, it!!)
+                }
+                newImage.clear()
+                newImage.put(MediaStore.Images.Media.IS_PENDING, 0)
+                context.contentResolver.update(this, newImage, null, null)
             }
-        context.contentResolver.insert(collection, newImage)!!.apply {
-            context.contentResolver.openOutputStream(this, "w").use {
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, it!!)
-            }
-            newImage.clear()
-            newImage.put(MediaStore.Images.Media.IS_PENDING, 0)
-            context.contentResolver.update(this, newImage, null, null)
         }
     }
-}
 
 private fun AppWidgetHostView.getSnapshotName(date: Long) = (
     try {

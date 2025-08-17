@@ -96,10 +96,11 @@ public class AppWidgetHostState(
 }
 
 @Composable
-public fun rememberAppWidgetHostState(providerInfo: AppWidgetProviderInfo? = null): AppWidgetHostState =
-    remember(providerInfo) {
-        AppWidgetHostState(providerInfo, mutableStateOf(null))
-    }
+public fun rememberAppWidgetHostState(
+    providerInfo: AppWidgetProviderInfo? = null,
+): AppWidgetHostState = remember(providerInfo) {
+    AppWidgetHostState(providerInfo, mutableStateOf(null))
+}
 
 /**
  * A layout composable with an [AppWidgetHostView] to display the provided [RemoteViews] from the
