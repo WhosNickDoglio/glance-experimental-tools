@@ -48,7 +48,7 @@ private const val SNAPSHOTS_FOLDER = "appwidget-snapshots"
  *
  * @see AppWidgetManager.requestPinAppWidget
  */
-fun AppWidgetHostState.requestPin(
+public fun AppWidgetHostState.requestPin(
     target: ComponentName = value!!.appWidgetInfo.provider,
     successCallback: PendingIntent? = null,
 ): Boolean {
@@ -74,7 +74,7 @@ fun AppWidgetHostState.requestPin(
  * @return the result of the operation with the image URI if successful
  */
 @RequiresApi(Build.VERSION_CODES.Q)
-suspend fun AppWidgetHostView.exportSnapshot(fileName: String? = null): Result<Uri> = runCatching {
+public suspend fun AppWidgetHostView.exportSnapshot(fileName: String? = null): Result<Uri> = runCatching {
     withContext(Dispatchers.IO) {
         val bitmap = (this@exportSnapshot as View).toBitmap()
         val collection =

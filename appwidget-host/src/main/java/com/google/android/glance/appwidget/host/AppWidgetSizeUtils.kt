@@ -16,6 +16,7 @@
 
 package com.google.android.glance.appwidget.host
 
+import android.R
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProviderInfo
 import android.content.Context
@@ -29,23 +30,23 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import kotlin.math.min
 
-fun DpSize.toSizeF(): SizeF = SizeF(width.value, height.value)
+public fun DpSize.toSizeF(): SizeF = SizeF(width.value, height.value)
 
-fun Dp.toPixels(context: Context) = toPixels(context.resources.displayMetrics)
+public fun Dp.toPixels(context: Context): Int = toPixels(context.resources.displayMetrics)
 
-fun Dp.toPixels(displayMetrics: DisplayMetrics) =
+public fun Dp.toPixels(displayMetrics: DisplayMetrics): Int =
     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, displayMetrics).toInt()
 
-internal fun Int.pixelsToDp(context: Context) = pixelsToDp(context.resources.displayMetrics)
+internal fun Int.pixelsToDp(context: Context): Dp = pixelsToDp(context.resources.displayMetrics)
 
-internal fun Int.pixelsToDp(displayMetrics: DisplayMetrics) = (this / displayMetrics.density).dp
+internal fun Int.pixelsToDp(displayMetrics: DisplayMetrics): Dp = (this / displayMetrics.density).dp
 
-fun AppWidgetProviderInfo.getTargetSize(context: Context): DpSize = DpSize(
+public fun AppWidgetProviderInfo.getTargetSize(context: Context): DpSize = DpSize(
     minWidth.pixelsToDp(context),
     minHeight.pixelsToDp(context),
 )
 
-fun AppWidgetProviderInfo.getMaxSize(context: Context): DpSize =
+public fun AppWidgetProviderInfo.getMaxSize(context: Context): DpSize =
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && maxResizeWidth > 0) {
         DpSize(
             maxResizeWidth.pixelsToDp(context),
@@ -55,12 +56,12 @@ fun AppWidgetProviderInfo.getMaxSize(context: Context): DpSize =
         DpSize(Int.MAX_VALUE.dp, Int.MAX_VALUE.dp)
     }
 
-fun AppWidgetProviderInfo.getMinSize(context: Context): DpSize = DpSize(
+public fun AppWidgetProviderInfo.getMinSize(context: Context): DpSize = DpSize(
     width = minResizeWidth.pixelsToDp(context),
     height = minResizeHeight.pixelsToDp(context),
 )
 
-fun AppWidgetProviderInfo.getSingleSize(context: Context): DpSize {
+public fun AppWidgetProviderInfo.getSingleSize(context: Context): DpSize {
     val minWidth =
         min(
             minWidth,
@@ -85,30 +86,30 @@ fun AppWidgetProviderInfo.getSingleSize(context: Context): DpSize {
     )
 }
 
-val Context.appwidgetBackgroundRadius: Dp
+public val Context.appwidgetBackgroundRadius: Dp
     get() =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val size =
                 resources.getDimensionPixelSize(
-                    android.R.dimen.system_app_widget_background_radius,
+                    R.dimen.system_app_widget_background_radius,
                 )
             (size / resources.displayMetrics.density).dp
         } else {
             16.dp
         }
 
-val Context.appwidgetBackgroundRadiusPixels: Float
+public val Context.appwidgetBackgroundRadiusPixels: Float
     get() =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             resources
                 .getDimensionPixelSize(
-                    android.R.dimen.system_app_widget_background_radius,
+                    R.dimen.system_app_widget_background_radius,
                 ).toFloat()
         } else {
             (16 * resources.displayMetrics.density)
         }
 
-fun AppWidgetProviderInfo.toSizeExtras(context: Context, availableSize: DpSize): Bundle =
+public fun AppWidgetProviderInfo.toSizeExtras(context: Context, availableSize: DpSize): Bundle =
     Bundle().apply {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             putInt(
