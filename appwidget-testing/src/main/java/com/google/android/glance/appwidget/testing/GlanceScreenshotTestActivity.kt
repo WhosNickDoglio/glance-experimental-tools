@@ -48,7 +48,6 @@ import kotlinx.coroutines.runBlocking
  * When using an emulator, you may use Espresso's `captureToBitmap` to ensure that the corner radius
  * is captured.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 public class GlanceScreenshotTestActivity : Activity() {
     private var state: Any? = null
     private var size: DpSize = DpSize(Dp.Unspecified, Dp.Unspecified)
@@ -154,7 +153,6 @@ public class GlanceScreenshotTestActivity : Activity() {
     private fun Dp.toPixels(displayMetrics: DisplayMetrics) =
         TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, displayMetrics).toInt()
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private class TestHostView(context: Context) : AppWidgetHostView(context) {
         init {
             // Prevent asynchronous inflation of the App Widget

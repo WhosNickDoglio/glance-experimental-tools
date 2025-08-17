@@ -79,8 +79,7 @@ android {
     }
     lint {
         checkReleaseBuilds = false
-        textOutput = file("stdout")
-        textReport = true
+        baseline = file("lint-baseline.xml")
     }
 }
 

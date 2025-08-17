@@ -16,7 +16,6 @@
 
 package com.google.android.glance.appwidget.host
 
-import android.R
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProviderInfo
 import android.content.Context
@@ -91,7 +90,7 @@ public val Context.appwidgetBackgroundRadius: Dp
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val size =
                 resources.getDimensionPixelSize(
-                    R.dimen.system_app_widget_background_radius,
+                    android.R.dimen.system_app_widget_background_radius,
                 )
             (size / resources.displayMetrics.density).dp
         } else {
@@ -103,7 +102,7 @@ public val Context.appwidgetBackgroundRadiusPixels: Float
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             resources
                 .getDimensionPixelSize(
-                    R.dimen.system_app_widget_background_radius,
+                    android.R.dimen.system_app_widget_background_radius,
                 ).toFloat()
         } else {
             (16 * resources.displayMetrics.density)

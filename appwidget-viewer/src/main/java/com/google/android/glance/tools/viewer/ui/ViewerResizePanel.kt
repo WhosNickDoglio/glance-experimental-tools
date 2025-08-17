@@ -21,19 +21,19 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 
 @Composable
 internal fun ViewerResizePanel(currentSize: DpSize, onSizeChange: (DpSize) -> Unit) {
     // TODO probably we should get the real max available size from the layout one measured
-    val configuration = LocalConfiguration.current
+    val windowInfo = LocalWindowInfo.current
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -54,7 +54,7 @@ internal fun ViewerResizePanel(currentSize: DpSize, onSizeChange: (DpSize) -> Un
         Slider(
             modifier = padding,
             value = currentSize.width.value,
-            valueRange = 48f..configuration.screenWidthDp.toFloat(),
+            valueRange = 48f..windowInfo.containerSize.height.toFloat(),
             onValueChange = {
                 onSizeChange(currentSize.copy(width = it.dp))
             },
@@ -68,7 +68,7 @@ internal fun ViewerResizePanel(currentSize: DpSize, onSizeChange: (DpSize) -> Un
         Slider(
             modifier = padding,
             value = currentSize.height.value,
-            valueRange = 48f..configuration.screenHeightDp.toFloat(),
+            valueRange = 48f..windowInfo.containerSize.height.toFloat(),
             onValueChange = { onSizeChange(currentSize.copy(height = it.dp)) },
         )
     }
