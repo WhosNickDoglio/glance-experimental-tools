@@ -17,14 +17,6 @@
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-
     dependencies {
         classpath libs.android.gradlePlugin
         classpath libs.kotlin.gradlePlugin
@@ -49,25 +41,6 @@ apply plugin: 'org.jetbrains.dokka'
 tasks.withType(DokkaMultiModuleTask).configureEach {
     outputDirectory = rootProject.file('docs/api')
     failOnWarning = true
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        def composeSnapshot = libs.versions.composesnapshot.get()
-        if (composeSnapshot.length() > 1) {
-            maven { url "https://androidx.dev/snapshots/builds/$composeSnapshot/artifacts/repository/" }
-        }
-
-        def glanceSnapshot = libs.versions.glancesnapshot.get()
-        if (glanceSnapshot.length() > 1) {
-            maven { url "https://androidx.dev/snapshots/builds/$glanceSnapshot/artifacts/repository" }
-        }
-    }
 }
 
 subprojects {

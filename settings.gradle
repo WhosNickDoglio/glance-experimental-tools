@@ -14,8 +14,39 @@
  * limitations under the License.
  */
 
+pluginManagement {
+    repositories {
+        exclusiveContent {
+            forRepository { google() }
+            filter {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroup("com.google.testing.platform")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 plugins {
     id 'com.gradle.enterprise' version '3.10.1'
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        exclusiveContent {
+            forRepository { google() }
+            filter {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroup("com.google.android.material")
+                includeGroup("com.google.testing.platform")
+            }
+        }
+        mavenCentral()
+    }
 }
 
 gradleEnterprise {
