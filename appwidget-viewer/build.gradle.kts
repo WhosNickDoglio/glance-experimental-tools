@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 /*
  * Copyright 2021 The Android Open Source Project
  *
@@ -22,6 +24,14 @@ plugins {
     alias(libs.plugins.publish)
     alias(libs.plugins.metalava)
 }
+
+kotlin {
+    explicitApi()
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_17
+    }
+}
+
 
 android {
     namespace = "com.google.android.glance.tools.viewer"
@@ -52,9 +62,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
