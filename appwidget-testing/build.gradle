@@ -27,7 +27,7 @@ kotlin {
 
 android {
     namespace 'com.google.android.glance.appwidget.testing'
-    compileSdk 35
+    compileSdkVersion 36
 
     defaultConfig {
         minSdk 26

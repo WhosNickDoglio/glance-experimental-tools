@@ -26,7 +26,7 @@ kotlin {
 
 android {
     namespace 'com.google.android.glance.tools.viewer'
-    compileSdk 35
+    compileSdkVersion 36
 
     defaultConfig {
         minSdk 21

@@ -23,7 +23,7 @@ plugins {
 
 android {
     namespace 'com.google.android.glance.tools.sample'
-    compileSdk 35
+    compileSdkVersion 36
 
     defaultConfig {
         applicationId "com.google.android.glance.tools.sample"

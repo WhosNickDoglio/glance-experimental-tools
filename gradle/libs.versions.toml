@@ -1,7 +1,7 @@
 [versions]
 composeCompiler = "1.5.3"
 composesnapshot = "-" # a single character = no snapshot
-androidx-compose-bom = "2024.12.01"
+androidx-compose-bom = "2025.08.00"
 
 glance = "1.1.1"
 glancesnapshot = "12873994" # a single character = no snapshot
@@ -10,15 +10,14 @@ glancesnapshot = "12873994" # a single character = no snapshot
 gradlePlugin = "8.12.0"
 
 ktlint = "0.42.1"
-kotlin = "2.1.0"
-coroutines = "1.9.0"
+kotlin = "2.2.10"
 
-androidxtest-core = "1.6.1"
-androidxtest-rules = "1.6.1"
-androidxtest-orchestrator = "1.5.1"
-androidxtest-runner = "1.6.2"
+androidxtest-core = "1.7.0"
+androidxtest-rules = "1.7.0"
+androidxtest-orchestrator = "1.6.1"
+androidxtest-runner = "1.7.0"
 
-androidx-test-ext-junit = "1.2.1"
+androidx-test-ext-junit = "1.3.0"
 
 robolectric = "4.15.1"
 roborazzi = "1.48.0"
@@ -46,35 +45,24 @@ android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref 
 gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.25.3"
 metalavaGradle = "me.tylerbwong.gradle.metalava:plugin:0.3.5"
 
-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
-kotlin-stdlibJdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
-kotlin-metadataJvm = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0"
+dokka = "org.jetbrains.dokka:dokka-gradle-plugin:2.0.0"
 
-kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
-kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
-
-dokka = "org.jetbrains.dokka:dokka-gradle-plugin:1.9.10"
-
-androidx-core = "androidx.core:core-ktx:1.15.0"
+androidx-core = "androidx.core:core-ktx:1.17.0"
 androidx-core-remoteviews = "androidx.core:core-remoteviews:1.1.0"
-androidx-activity-compose = "androidx.activity:activity-compose:1.9.3"
+androidx-activity-compose = "androidx.activity:activity-compose:1.10.1"
 
 androidx-test-core = { module = "androidx.test:core-ktx", version.ref = "androidxtest-core" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxtest-runner" }
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidxtest-rules" }
-androidx-test-orchestrator = { module = "androidx.test:orchestrator", version.ref = "androidxtest-orchestrator" }
-androidx-test-uiAutomator = "androidx.test.uiautomator:uiautomator:2.3.0"
+
 
 # alpha for robolectric x compose fix
-androidx-test-espressoCore = "androidx.test.espresso:espresso-core:3.6.1"
-androidx-test-espressoWeb = "androidx.test.espresso:espresso-web:3.6.1"
+androidx-test-espressoCore = "androidx.test.espresso:espresso-core:3.7.0"
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 
 junit = "junit:junit:4.13.2"
-truth = "com.google.truth:truth:1.1.2"
 
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = "roborazzi"}

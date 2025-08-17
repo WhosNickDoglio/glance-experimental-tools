@@ -57,14 +57,16 @@ public class GlanceScreenshotTestActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(FrameLayout(this, null).apply {
-            id = FRAME_LAYOUT_ID
-            background = context.getDrawable(android.R.color.darker_gray)
-            layoutParams = FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT,
-            )
-        })
+        setContentView(
+            FrameLayout(this, null).apply {
+                id = FRAME_LAYOUT_ID
+                background = context.getDrawable(android.R.color.darker_gray)
+                layoutParams = FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                )
+            }
+        )
     }
 
     /**

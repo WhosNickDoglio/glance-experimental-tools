@@ -18,7 +18,6 @@ package com.google.android.glance.tools.testing
 
 import android.app.Application
 import android.content.ComponentName
-import android.content.pm.ActivityInfo
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.datastore.preferences.core.preferencesOf
