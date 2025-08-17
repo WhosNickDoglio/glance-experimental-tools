@@ -57,7 +57,14 @@ public class GlanceScreenshotTestActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.test_activity_layout)
+        setContentView(FrameLayout(this, null).apply {
+            id = FRAME_LAYOUT_ID
+            background = context.getDrawable(android.R.color.darker_gray)
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT,
+            )
+        })
     }
 
     /**
@@ -104,7 +111,7 @@ public class GlanceScreenshotTestActivity : Activity() {
                 content = composable
             ).remoteViews
 
-            val activityFrame = findViewById<FrameLayout>(R.id.content)
+            val activityFrame = findViewById<FrameLayout>(FRAME_LAYOUT_ID)
             hostView = TestHostView(applicationContext)
             hostView.setBackgroundColor(Color.WHITE)
             activityFrame.addView(hostView)
@@ -148,5 +155,9 @@ public class GlanceScreenshotTestActivity : Activity() {
             setExecutor(null)
             layoutDirection = View.LAYOUT_DIRECTION_LOCALE
         }
+    }
+
+    private companion object {
+        private const val FRAME_LAYOUT_ID = 1
     }
 }
