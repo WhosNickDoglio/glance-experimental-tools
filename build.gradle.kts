@@ -19,6 +19,7 @@ import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 plugins {
     alias(libs.plugins.spotless)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.doctor)
     alias(libs.plugins.publish) apply false
     alias(libs.plugins.metalava) apply false
     alias(libs.plugins.android.app) apply false
