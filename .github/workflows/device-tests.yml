@@ -24,7 +24,7 @@ jobs:
         shard: [ 0, 1, 2 ] # Need to update shard-count below if this changes
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
 
       - name: Copy CI gradle.properties
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
