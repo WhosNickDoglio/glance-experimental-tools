@@ -35,8 +35,6 @@ buildscript {
         classpath libs.dokka
 
         classpath libs.metalavaGradle
-
-        classpath libs.affectedmoduledetector
     }
 }
 
@@ -47,37 +45,11 @@ plugins {
 
 
 apply plugin: 'org.jetbrains.dokka'
-apply plugin: 'com.dropbox.affectedmoduledetector'
 
 // TODO do we need?
 tasks.withType(DokkaMultiModuleTask).configureEach {
     outputDirectory = rootProject.file('docs/api')
     failOnWarning = true
-}
-
-affectedModuleDetector {
-    baseDir = "${project.rootDir}"
-    pathsAffectingAllModules = [
-            "gradle/libs.versions.toml",
-    ]
-    excludedModules = [
-            "sample"
-    ]
-
-    logFilename = "output.log"
-    logFolder = "${rootProject.buildDir}/affectedModuleDetector"
-
-    String baseRef = findProperty("affected_base_ref")
-    // If we have a base ref to diff against, extract the branch name and use it
-    if (baseRef != null && !baseRef.isEmpty()) {
-        // Remove the prefix from the head.
-        // TODO: need to support other types of git refs
-        specifiedBranch = baseRef.replace('refs/heads/', '')
-        compareFrom = "SpecifiedBranchCommit"
-    } else {
-        // Otherwise we use the previous commit. This is mostly used for commits to main.
-        compareFrom = "PreviousCommit"
-    }
 }
 
 allprojects {
