@@ -1,0 +1,23 @@
+# More info around this file at https://www.git-town.com/configuration-file
+
+[branches]
+main = "main"
+
+[create]
+new-branch-type = "feature"
+share-new-branches = "no"
+
+[hosting]
+dev-remote = "origin"
+
+[ship]
+delete-tracking-branch = true
+strategy = "api"
+
+[sync]
+feature-strategy = "rebase"
+perennial-strategy = "rebase"
+prototype-strategy = "rebase"
+push-hook = true
+tags = true
+upstream = false
