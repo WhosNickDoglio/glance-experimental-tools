@@ -38,7 +38,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         InfoText(key = "Label", value = providerInfo.loadLabel(context.packageManager))
 
@@ -47,7 +47,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
             InfoText(
                 key = "Description",
                 value = description ?: "Missing description tag",
-                isError = description.isNullOrBlank()
+                isError = description.isNullOrBlank(),
             )
         } else {
             InfoText(key = "Description", value = "Device does not support it", isError = true)
@@ -57,12 +57,12 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
         InfoText(
             key = "Initial layout",
             value = if (hasInitialLayout) "Available" else "Missing initial layout",
-            isError = !hasInitialLayout
+            isError = !hasInitialLayout,
         )
 
         InfoText(
             key = "Default Size",
-            value = providerInfo.getTargetSize(context).toString()
+            value = providerInfo.getTargetSize(context).toString(),
         )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -74,7 +74,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
                 } else {
                     "Missing target cells.\nminWidth/Height will be used instead"
                 },
-                isError = !targetSizeAvailable
+                isError = !targetSizeAvailable,
             )
         }
 
@@ -82,7 +82,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
             InfoText(
                 key = "Resizeable",
                 value = "Widget is not resizable",
-                isError = true
+                isError = true,
             )
         } else {
             val hasResizeWidth = providerInfo.minResizeWidth != providerInfo.minWidth
@@ -93,7 +93,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
                 } else {
                     "No MIN resize width provided.\nminWidth will be used instead"
                 },
-                isError = !hasResizeWidth
+                isError = !hasResizeWidth,
             )
 
             val hasResizeHeight = providerInfo.minResizeHeight != providerInfo.minHeight
@@ -104,7 +104,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
                 } else {
                     "No MIN resize height provided.\nminHeight will be used instead"
                 },
-                isError = !hasResizeHeight
+                isError = !hasResizeHeight,
             )
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -112,7 +112,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
                 InfoText(
                     key = "maxResizeWidth",
                     value = if (hasMaxResizeWidth) "${providerInfo.maxResizeWidth}" else "Missing",
-                    isError = !hasMaxResizeWidth
+                    isError = !hasMaxResizeWidth,
                 )
                 val hasMaxResizeHeight = providerInfo.maxResizeHeight > 0
                 InfoText(
@@ -122,7 +122,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
                     } else {
                         "Missing"
                     },
-                    isError = !hasResizeHeight
+                    isError = !hasResizeHeight,
                 )
             }
         }
@@ -131,7 +131,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
         InfoText(
             key = "previewImage",
             value = if (hasPreviewImage) "Available" else "Missing. App Icon will be used instead",
-            isError = !hasPreviewImage
+            isError = !hasPreviewImage,
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val hasPreviewLayout = providerInfo.previewLayout != 0
@@ -142,13 +142,13 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
                 } else {
                     "Missing. previewImage will be used instead"
                 },
-                isError = !hasPreviewLayout
+                isError = !hasPreviewLayout,
             )
         }
         if (providerInfo.configure != null) {
             InfoText(
                 key = "Configuration",
-                value = providerInfo.configure.className
+                value = providerInfo.configure.className,
             )
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -157,7 +157,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
                         AppWidgetProviderInfo.WIDGET_FEATURE_CONFIGURATION_OPTIONAL
                 InfoText(
                     key = "Configuration Type",
-                    value = if (isOptional) "Optional" else "Mandatory"
+                    value = if (isOptional) "Optional" else "Mandatory",
                 )
                 val isReconfigurable =
                     providerInfo.widgetFeatures ==
@@ -172,7 +172,7 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
                 InfoText(
                     key = "Reconfigurable",
                     value = if (isReconfigurable) "Yes" else "No",
-                    isError = !isReconfigurable
+                    isError = !isReconfigurable,
                 )
             }
         }
@@ -185,12 +185,12 @@ private fun InfoText(key: String, value: String, isError: Boolean = false) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             text = "$key:",
             style = MaterialTheme.typography.labelMedium,
-            modifier = Modifier.fillMaxWidth(0.4f)
+            modifier = Modifier.fillMaxWidth(0.4f),
         )
         Text(
             text = value,
@@ -200,7 +200,7 @@ private fun InfoText(key: String, value: String, isError: Boolean = false) {
             } else {
                 MaterialTheme.colorScheme.onSurface
             },
-            textAlign = TextAlign.End
+            textAlign = TextAlign.End,
         )
     }
 }

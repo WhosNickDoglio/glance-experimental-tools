@@ -64,9 +64,9 @@ public class GlanceScreenshotTestActivity : Activity() {
                 layoutParams =
                     FrameLayout.LayoutParams(
                         FrameLayout.LayoutParams.MATCH_PARENT,
-                        FrameLayout.LayoutParams.MATCH_PARENT
+                        FrameLayout.LayoutParams.MATCH_PARENT,
                     )
-            }
+            },
         )
     }
 
@@ -113,7 +113,7 @@ public class GlanceScreenshotTestActivity : Activity() {
                         context = applicationContext,
                         size = size,
                         state = state,
-                        content = composable
+                        content = composable,
                     ).remoteViews
 
             val activityFrame = findViewById<FrameLayout>(FRAME_LAYOUT_ID)
@@ -136,7 +136,7 @@ public class GlanceScreenshotTestActivity : Activity() {
                 FrameLayout.LayoutParams(
                     FrameLayout.LayoutParams.WRAP_CONTENT,
                     FrameLayout.LayoutParams.WRAP_CONTENT,
-                    Gravity.CENTER
+                    Gravity.CENTER,
                 )
         } else {
             val hostViewPadding = Rect()

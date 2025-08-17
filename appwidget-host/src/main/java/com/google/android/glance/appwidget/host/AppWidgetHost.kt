@@ -61,7 +61,7 @@ import java.util.concurrent.Executors
  */
 class AppWidgetHostState(
     val providerInfo: AppWidgetProviderInfo?,
-    private val state: MutableState<AppWidgetHostView?>
+    private val state: MutableState<AppWidgetHostView?>,
 ) {
 
     /**
@@ -115,7 +115,7 @@ fun AppWidgetHost(
     modifier: Modifier = Modifier,
     displaySize: DpSize,
     state: AppWidgetHostState,
-    gridColor: Color? = null
+    gridColor: Color? = null,
 ) {
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         if (gridColor != null) {
@@ -123,7 +123,7 @@ fun AppWidgetHost(
                 rows = 5,
                 columns = 5,
                 color = gridColor,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             )
         }
 
@@ -149,8 +149,8 @@ fun AppWidgetHost(
             },
             modifier = hostModifier.clip(
                 RoundedCornerShape(
-                    CornerSize(LocalContext.current.appwidgetBackgroundRadius)
-                )
+                    CornerSize(LocalContext.current.appwidgetBackgroundRadius),
+                ),
             ),
             update = { hostView ->
                 if (hostView != state.value) {
@@ -163,7 +163,7 @@ fun AppWidgetHost(
                     }
                 }
                 state.value = hostView
-            }
+            },
         )
     }
 }
@@ -204,17 +204,17 @@ private fun CellGrid(rows: Int, columns: Int, color: Color, modifier: Modifier) 
             for (column in 0 until columns) {
                 translate(
                     left = column * cellSize.width,
-                    top = row * cellSize.height
+                    top = row * cellSize.height,
                 ) {
                     drawOutline(
                         outline = Outline.Rectangle(
                             Rect(
                                 offset = Offset(0f, 0f),
-                                size = cellSize
-                            )
+                                size = cellSize,
+                            ),
                         ),
                         color = color,
-                        style = Stroke(width = 1f)
+                        style = Stroke(width = 1f),
                     )
                 }
             }
@@ -238,7 +238,7 @@ private fun Modifier.dashedBorder(width: Dp, radius: Dp, color: Color) = drawBeh
             size.height - width.toPx(),
             radius.toPx(),
             radius.toPx(),
-            paint
+            paint,
         )
     }
 }

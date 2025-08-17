@@ -116,7 +116,7 @@ private fun SampleConfigScreen() {
             }) {
                 Icon(imageVector = Icons.Rounded.Done, contentDescription = "Save changes")
             }
-        }
+        },
     ) {
         ConfigurationList(Modifier.padding(it), configurationState)
     }
@@ -139,7 +139,7 @@ private fun ConfigurationList(modifier: Modifier, state: AppWidgetConfigurationS
             .fillMaxWidth()
             .padding(16.dp),
         horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text("Setup counter:")
         IconButton(onClick = {

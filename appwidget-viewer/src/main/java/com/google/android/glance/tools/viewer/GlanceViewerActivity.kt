@@ -61,7 +61,7 @@ abstract class AppWidgetViewerActivity : ComponentActivity() {
      */
     abstract suspend fun getAppWidgetSnapshot(
         info: AppWidgetProviderInfo,
-        size: DpSize
+        size: DpSize,
     ): RemoteViews
 
     // Moving states outside of composition to ensure they are kept when Live Edits happen.
@@ -90,7 +90,7 @@ abstract class AppWidgetViewerActivity : ComponentActivity() {
             ViewerTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
                     ViewerScreen(
                         providers = providers,
@@ -98,7 +98,7 @@ abstract class AppWidgetViewerActivity : ComponentActivity() {
                         currentSize = currentSize.value,
                         snapshot = ::getAppWidgetSnapshot,
                         onResize = { currentSize.value = it },
-                        onSelected = { selectedProvider.value = it }
+                        onSelected = { selectedProvider.value = it },
                     )
                 }
             }
@@ -117,7 +117,7 @@ abstract class GlanceViewerActivity : AppWidgetViewerActivity() {
      * @param receiver - The selected [GlanceAppWidgetReceiver] to display
      */
     abstract suspend fun getGlanceSnapshot(
-        receiver: Class<out GlanceAppWidgetReceiver>
+        receiver: Class<out GlanceAppWidgetReceiver>,
     ): GlanceSnapshot
 
     /**
@@ -129,7 +129,7 @@ abstract class GlanceViewerActivity : AppWidgetViewerActivity() {
     @Suppress("UNCHECKED_CAST")
     override suspend fun getAppWidgetSnapshot(
         info: AppWidgetProviderInfo,
-        size: DpSize
+        size: DpSize,
     ): RemoteViews = withContext(Dispatchers.IO) {
         val receiver = Class.forName(info.provider.className)
         require(GlanceAppWidgetReceiver::class.java.isAssignableFrom(receiver)) {

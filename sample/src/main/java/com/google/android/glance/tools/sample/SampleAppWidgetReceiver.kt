@@ -33,7 +33,7 @@ class SampleAppWidgetReceiver : AppWidgetProvider() {
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
-        appWidgetIds: IntArray
+        appWidgetIds: IntArray,
     ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         appWidgetManager.updateAppWidget(appWidgetIds, SampleAppWidget.createWidget(context))
@@ -43,7 +43,7 @@ class SampleAppWidgetReceiver : AppWidgetProvider() {
 object SampleAppWidget {
     fun createWidget(context: Context): RemoteViews = RemoteViews(
         context.packageName,
-        R.layout.widget_sample
+        R.layout.widget_sample,
     )
 }
 
@@ -52,7 +52,7 @@ object SampleAppWidget {
 fun SampleAppWidgetPreview() {
     AppWidgetHostPreview(
         modifier = Modifier.fillMaxSize(),
-        displaySize = DpSize(200.dp, 200.dp)
+        displaySize = DpSize(200.dp, 200.dp),
     ) { context ->
         SampleAppWidget.createWidget(context)
     }

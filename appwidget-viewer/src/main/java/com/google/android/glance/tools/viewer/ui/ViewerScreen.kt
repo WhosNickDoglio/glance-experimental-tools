@@ -82,7 +82,7 @@ internal fun ViewerScreen(
     currentSize: DpSize,
     snapshot: suspend (AppWidgetProviderInfo, DpSize) -> RemoteViews,
     onResize: (DpSize) -> Unit,
-    onSelected: (AppWidgetProviderInfo) -> Unit
+    onSelected: (AppWidgetProviderInfo) -> Unit,
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -96,12 +96,12 @@ internal fun ViewerScreen(
         LaunchedEffect(snapshotHostState.value) {
             // Show first the initial layout
             snapshotHostState.updateAppWidget(
-                RemoteViews(context.packageName, selectedProvider.initialLayout)
+                RemoteViews(context.packageName, selectedProvider.initialLayout),
             )
 
             // Then request the actual snapshot
             snapshotHostState.updateAppWidget(
-                snapshot(selectedProvider, currentSize)
+                snapshot(selectedProvider, currentSize),
             )
         }
         if (viewerPanelState == ViewerPanel.Resize && bottomSheetState.isVisible) {
@@ -109,7 +109,7 @@ internal fun ViewerScreen(
                 // If the user is in resizing mode debounce the updates by delaying them.
                 delay(500)
                 snapshotHostState.updateAppWidget(
-                    snapshot(selectedProvider, currentSize)
+                    snapshot(selectedProvider, currentSize),
                 )
             }
         }
@@ -122,23 +122,23 @@ internal fun ViewerScreen(
         scrimColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.32f),
         sheetShape = MaterialTheme.shapes.large.copy(
             bottomStart = CornerSize(0.dp),
-            bottomEnd = CornerSize(0.dp)
+            bottomEnd = CornerSize(0.dp),
         ),
         sheetContent = {
             when (viewerPanelState) {
                 ViewerPanel.Resize -> ViewerResizePanel(
                     currentSize = currentSize,
-                    onSizeChange = onResize
+                    onSizeChange = onResize,
                 )
                 ViewerPanel.Info -> ViewerInfoPanel(selectedProvider)
             }
-        }
+        },
     ) {
         ModalNavigationDrawer(
             drawerState = drawerState,
             drawerContent = {
                 ViewerDrawer(providers, selectedProvider, drawerState, onSelected)
-            }
+            },
         ) {
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
@@ -153,7 +153,7 @@ internal fun ViewerScreen(
                         onUpdate = {
                             scope.launch {
                                 snapshotHostState.updateAppWidget(
-                                    snapshot(selectedProvider, currentSize)
+                                    snapshot(selectedProvider, currentSize),
                                 )
                             }
                         },
@@ -167,7 +167,7 @@ internal fun ViewerScreen(
                                 if (!requested) {
                                     snackbarHostState.showSnackbar(
                                         message = "Launcher does not support AppWidget pinning.",
-                                        withDismissAction = true
+                                        withDismissAction = true,
                                     )
                                 }
                             }
@@ -177,12 +177,12 @@ internal fun ViewerScreen(
                                 doExport(
                                     context,
                                     snackbarHostState,
-                                    snapshotHostState
+                                    snapshotHostState,
                                 )
                             }
-                        }
+                        },
                     )
-                }
+                },
             ) { innerPadding ->
                 AppWidgetHost(
                     modifier = Modifier
@@ -191,7 +191,7 @@ internal fun ViewerScreen(
                         .padding(24.dp),
                     displaySize = currentSize,
                     state = snapshotHostState,
-                    gridColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f)
+                    gridColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f),
                 )
             }
         }
@@ -201,7 +201,7 @@ internal fun ViewerScreen(
 private suspend fun doExport(
     context: Context,
     snackbarHostState: SnackbarHostState,
-    appWidgetHostState: AppWidgetHostState
+    appWidgetHostState: AppWidgetHostState,
 ) {
     val host = appWidgetHostState.value ?: return
     val uriResult = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
@@ -213,13 +213,13 @@ private suspend fun doExport(
     if (uriResult.isFailure) {
         snackbarHostState.showSnackbar(
             message = uriResult.exceptionOrNull()?.message ?: "Something went wrong",
-            withDismissAction = true
+            withDismissAction = true,
         )
     } else {
         val result = snackbarHostState.showSnackbar(
             message = "Snapshot stored in gallery",
             actionLabel = "View",
-            withDismissAction = true
+            withDismissAction = true,
         )
         if (result == SnackbarResult.ActionPerformed) {
             val intent = Intent(Intent.ACTION_VIEW, uriResult.getOrThrow()).apply {
@@ -238,7 +238,7 @@ private fun ViewerBottomBar(
     onUpdate: () -> Unit,
     onShowPanel: (ViewerPanel) -> Unit,
     onPin: () -> Unit,
-    onExport: () -> Unit
+    onExport: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     BottomAppBar(
@@ -254,51 +254,51 @@ private fun ViewerBottomBar(
             }) {
                 Icon(
                     imageVector = Icons.Rounded.Menu,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
             IconButton(
                 enabled = appWidgetHostState.isReady,
                 onClick = {
                     onShowPanel(ViewerPanel.Resize)
-                }
+                },
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Tune,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
             IconButton(
                 enabled = appWidgetHostState.isReady,
                 onClick = {
                     onShowPanel(ViewerPanel.Info)
-                }
+                },
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Description,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
             IconButton(
                 enabled = appWidgetHostState.isReady,
                 onClick = {
                     onUpdate()
-                }
+                },
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Refresh,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
             IconButton(
                 enabled = appWidgetHostState.isReady,
                 onClick = {
                     onPin()
-                }
+                },
             ) {
                 Icon(
                     imageVector = Icons.Outlined.PushPin,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
         },
@@ -306,14 +306,14 @@ private fun ViewerBottomBar(
             FloatingActionButton(
                 onClick = {
                     onExport()
-                }
+                },
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Share,
-                    contentDescription = "Export current snapshot"
+                    contentDescription = "Export current snapshot",
                 )
             }
-        }
+        },
     )
 }
 
@@ -323,14 +323,14 @@ private fun ViewerDrawer(
     providers: List<AppWidgetProviderInfo>,
     selectedProvider: AppWidgetProviderInfo,
     drawerState: DrawerState,
-    onSelected: (AppWidgetProviderInfo) -> Unit
+    onSelected: (AppWidgetProviderInfo) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     ModalDrawerSheet {
         Text(
             "Select widget",
             style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
         providers.forEach { item ->
             NavigationDrawerItem(
@@ -341,7 +341,7 @@ private fun ViewerDrawer(
                         } else {
                             Icons.Rounded.KeyboardArrowRight
                         },
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 },
                 label = { Text(item.loadLabel(LocalContext.current.packageManager)) },
@@ -350,7 +350,7 @@ private fun ViewerDrawer(
                     scope.launch { drawerState.close() }
                     onSelected(item)
                 },
-                modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
             )
         }
     }

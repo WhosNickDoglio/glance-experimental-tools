@@ -31,19 +31,19 @@ class SampleViewerActivity : GlanceViewerActivity() {
 
     override fun getProviders() = listOf(
         SampleGlanceWidgetReceiver::class.java,
-        SampleAppWidgetReceiver::class.java
+        SampleAppWidgetReceiver::class.java,
     )
 
     override suspend fun getGlanceSnapshot(
-        receiver: Class<out GlanceAppWidgetReceiver>
+        receiver: Class<out GlanceAppWidgetReceiver>,
     ): GlanceSnapshot = when (receiver) {
         SampleGlanceWidgetReceiver::class.java ->
             GlanceSnapshot(
                 instance = SampleGlanceWidget,
                 state =
                 mutablePreferencesOf(
-                    SampleGlanceWidget.countKey to counter++
-                )
+                    SampleGlanceWidget.countKey to counter++,
+                ),
             )
         else -> throw IllegalArgumentException()
     }
@@ -53,7 +53,7 @@ class SampleViewerActivity : GlanceViewerActivity() {
      */
     override suspend fun getAppWidgetSnapshot(
         info: AppWidgetProviderInfo,
-        size: DpSize
+        size: DpSize,
     ): RemoteViews = when (info.provider.className) {
         SampleAppWidgetReceiver::class.java.name -> SampleAppWidget.createWidget(this)
         else -> super.getAppWidgetSnapshot(info, size)

@@ -37,19 +37,19 @@ internal fun ViewerResizePanel(currentSize: DpSize, onSizeChange: (DpSize) -> Un
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         Text(
             text = "Resize widget:",
             style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
         )
 
         val padding = Modifier.padding(start = 16.dp, end = 16.dp)
         Text(
             text = "Width: ${currentSize.width.value.toInt()}dp",
             style = MaterialTheme.typography.labelMedium,
-            modifier = padding
+            modifier = padding,
         )
         Slider(
             modifier = padding,
@@ -57,19 +57,19 @@ internal fun ViewerResizePanel(currentSize: DpSize, onSizeChange: (DpSize) -> Un
             valueRange = 48f..configuration.screenWidthDp.toFloat(),
             onValueChange = {
                 onSizeChange(currentSize.copy(width = it.dp))
-            }
+            },
         )
         Spacer(modifier = Modifier.size(8.dp))
         Text(
             text = "Height: ${currentSize.height.value.toInt()}dp",
             style = MaterialTheme.typography.labelMedium,
-            modifier = padding
+            modifier = padding,
         )
         Slider(
             modifier = padding,
             value = currentSize.height.value,
             valueRange = 48f..configuration.screenHeightDp.toFloat(),
-            onValueChange = { onSizeChange(currentSize.copy(height = it.dp)) }
+            onValueChange = { onSizeChange(currentSize.copy(height = it.dp)) },
         )
     }
 }

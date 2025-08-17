@@ -55,8 +55,8 @@ class SampleGlanceScreenshotTest {
                 shadowOf(appContext.packageManager).addActivityIfNotPresent(
                     ComponentName(
                         appContext.packageName,
-                        GlanceScreenshotTestActivity::class.java.name
-                    )
+                        GlanceScreenshotTestActivity::class.java.name,
+                    ),
                 )
             }
         }
@@ -107,9 +107,9 @@ class SampleGlanceScreenshotTest {
                     RoborazziOptions(
                         compareOptions =
                         RoborazziOptions.CompareOptions(
-                            changeThreshold = 0F
-                        )
-                    )
+                            changeThreshold = 0F,
+                        ),
+                    ),
                 )
         }
     }

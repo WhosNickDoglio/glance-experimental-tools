@@ -50,7 +50,7 @@ private const val SNAPSHOTS_FOLDER = "appwidget-snapshots"
  */
 fun AppWidgetHostState.requestPin(
     target: ComponentName = value!!.appWidgetInfo.provider,
-    successCallback: PendingIntent? = null
+    successCallback: PendingIntent? = null,
 ): Boolean {
     val widgetManager = AppWidgetManager.getInstance(value!!.context)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
@@ -79,7 +79,7 @@ suspend fun AppWidgetHostView.exportSnapshot(fileName: String? = null): Result<U
         val bitmap = (this@exportSnapshot as View).toBitmap()
         val collection =
             MediaStore.Images.Media.getContentUri(
-                MediaStore.VOLUME_EXTERNAL_PRIMARY
+                MediaStore.VOLUME_EXTERNAL_PRIMARY,
             )
         val dirDest = File(Environment.DIRECTORY_PICTURES, SNAPSHOTS_FOLDER)
         val date = System.currentTimeMillis()

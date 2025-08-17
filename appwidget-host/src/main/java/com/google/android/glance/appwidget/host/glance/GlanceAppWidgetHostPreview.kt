@@ -51,7 +51,7 @@ fun GlanceAppWidgetHostPreview(
     modifier: Modifier = Modifier,
     state: Any? = null,
     displaySize: DpSize = DpSize.Unspecified,
-    provider: AppWidgetProviderInfo? = null
+    provider: AppWidgetProviderInfo? = null,
 ) {
     val hostState = rememberAppWidgetHostState(provider)
     val scope = rememberCoroutineScope()
@@ -59,7 +59,7 @@ fun GlanceAppWidgetHostPreview(
 
     suspend fun updateContent() {
         hostState.updateAppWidget(
-            glanceAppWidget.compose(context = context, size = displaySize, state = state)
+            glanceAppWidget.compose(context = context, size = displaySize, state = state),
         )
     }
 
@@ -76,6 +76,6 @@ fun GlanceAppWidgetHostPreview(
             }
         }.then(modifier),
         displaySize = displaySize,
-        state = hostState
+        state = hostState,
     )
 }

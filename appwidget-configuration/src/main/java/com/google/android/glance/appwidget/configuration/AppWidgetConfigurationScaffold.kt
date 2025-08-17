@@ -75,7 +75,7 @@ class AppWidgetConfigurationState(
     val glanceId: GlanceId?,
     val providerInfo: AppWidgetProviderInfo?,
     val instance: GlanceAppWidget,
-    private val activity: Activity
+    private val activity: Activity,
 ) {
 
     @PublishedApi
@@ -126,7 +126,7 @@ class AppWidgetConfigurationState(
         updateAppWidgetState(
             activity,
             instance.stateDefinition as GlanceStateDefinition<Any?>,
-            glanceId
+            glanceId,
         ) {
             internalState
         }
@@ -160,7 +160,7 @@ class AppWidgetConfigurationState(
  */
 @Composable
 fun rememberAppWidgetConfigurationState(
-    configurationInstance: GlanceAppWidget
+    configurationInstance: GlanceAppWidget,
 ): AppWidgetConfigurationState {
     val activity = (LocalContext.current as Activity).apply {
         // Set the result to canceled in case the configuration does not finish
@@ -183,7 +183,7 @@ fun rememberAppWidgetConfigurationState(
         glanceId = glanceId,
         providerInfo = providerInfo,
         instance = configurationInstance,
-        activity = activity
+        activity = activity,
     )
     return produceState(initialValue = initialValue, configurationInstance) {
         if (glanceId == null) return@produceState
@@ -191,12 +191,12 @@ fun rememberAppWidgetConfigurationState(
             state = getAppWidgetState(
                 context = activity,
                 definition = configurationInstance.stateDefinition as GlanceStateDefinition<*>,
-                glanceId = glanceId
+                glanceId = glanceId,
             ),
             glanceId = glanceId,
             providerInfo = providerInfo,
             instance = configurationInstance,
-            activity = activity
+            activity = activity,
         )
     }.value
 }
@@ -244,7 +244,7 @@ fun AppWidgetConfigurationScaffold(
     displaySize: DpSize = DpSize.Unspecified,
     containerColor: Color = MaterialTheme.colorScheme.background,
     contentColor: Color = contentColorFor(containerColor),
-    content: @Composable (PaddingValues) -> Unit
+    content: @Composable (PaddingValues) -> Unit,
 ) {
     val context = LocalContext.current
     val glanceId = appWidgetConfigurationState.glanceId
@@ -276,14 +276,14 @@ fun AppWidgetConfigurationScaffold(
             previewState,
             currentState,
             appWidgetConfigurationState.instance,
-            widgetSize
+            widgetSize,
         ) {
             previewState.updateAppWidget(
                 appWidgetConfigurationState.instance.compose(
                     context = context,
                     size = widgetSize,
-                    state = currentState
-                )
+                    state = currentState,
+                ),
             )
         }
     }
@@ -296,7 +296,7 @@ fun AppWidgetConfigurationScaffold(
         floatingActionButton,
         floatingActionButtonPosition,
         containerColor,
-        contentColor
+        contentColor,
     ) {
         Column(Modifier.fillMaxSize()) {
             AppWidgetHost(
@@ -307,7 +307,7 @@ fun AppWidgetConfigurationScaffold(
                     .padding(it)
                     .padding(16.dp),
                 displaySize = widgetSize,
-                state = previewState
+                state = previewState,
             )
             content(it)
         }

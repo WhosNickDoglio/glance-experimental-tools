@@ -45,7 +45,7 @@ fun AppWidgetHostPreview(
     modifier: Modifier = Modifier,
     displaySize: DpSize = DpSize.Unspecified,
     provider: AppWidgetProviderInfo? = null,
-    content: suspend (Context) -> RemoteViews
+    content: suspend (Context) -> RemoteViews,
 ) {
     val hostState = rememberAppWidgetHostState(provider)
     val scope = rememberCoroutineScope()
@@ -69,6 +69,6 @@ fun AppWidgetHostPreview(
             }
             .then(modifier),
         displaySize = displaySize,
-        state = hostState
+        state = hostState,
     )
 }

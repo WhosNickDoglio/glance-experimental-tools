@@ -42,14 +42,14 @@ internal fun Int.pixelsToDp(displayMetrics: DisplayMetrics) = (this / displayMet
 
 fun AppWidgetProviderInfo.getTargetSize(context: Context): DpSize = DpSize(
     minWidth.pixelsToDp(context),
-    minHeight.pixelsToDp(context)
+    minHeight.pixelsToDp(context),
 )
 
 fun AppWidgetProviderInfo.getMaxSize(context: Context): DpSize =
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && maxResizeWidth > 0) {
         DpSize(
             maxResizeWidth.pixelsToDp(context),
-            maxResizeHeight.pixelsToDp(context)
+            maxResizeHeight.pixelsToDp(context),
         )
     } else {
         DpSize(Int.MAX_VALUE.dp, Int.MAX_VALUE.dp)
@@ -57,7 +57,7 @@ fun AppWidgetProviderInfo.getMaxSize(context: Context): DpSize =
 
 fun AppWidgetProviderInfo.getMinSize(context: Context): DpSize = DpSize(
     width = minResizeWidth.pixelsToDp(context),
-    height = minResizeHeight.pixelsToDp(context)
+    height = minResizeHeight.pixelsToDp(context),
 )
 
 fun AppWidgetProviderInfo.getSingleSize(context: Context): DpSize {
@@ -68,7 +68,7 @@ fun AppWidgetProviderInfo.getSingleSize(context: Context): DpSize {
                 minResizeWidth
             } else {
                 Int.MAX_VALUE
-            }
+            },
         )
     val minHeight =
         min(
@@ -77,11 +77,11 @@ fun AppWidgetProviderInfo.getSingleSize(context: Context): DpSize {
                 minResizeHeight
             } else {
                 Int.MAX_VALUE
-            }
+            },
         )
     return DpSize(
         minWidth.pixelsToDp(context),
-        minHeight.pixelsToDp(context)
+        minHeight.pixelsToDp(context),
     )
 }
 
@@ -90,7 +90,7 @@ val Context.appwidgetBackgroundRadius: Dp
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val size =
                 resources.getDimensionPixelSize(
-                    android.R.dimen.system_app_widget_background_radius
+                    android.R.dimen.system_app_widget_background_radius,
                 )
             (size / resources.displayMetrics.density).dp
         } else {
@@ -102,7 +102,7 @@ val Context.appwidgetBackgroundRadiusPixels: Float
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             resources
                 .getDimensionPixelSize(
-                    android.R.dimen.system_app_widget_background_radius
+                    android.R.dimen.system_app_widget_background_radius,
                 ).toFloat()
         } else {
             (16 * resources.displayMetrics.density)
@@ -113,41 +113,41 @@ fun AppWidgetProviderInfo.toSizeExtras(context: Context, availableSize: DpSize):
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             putInt(
                 AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH,
-                minResizeWidth
+                minResizeWidth,
             )
             putInt(
                 AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT,
-                minResizeHeight
+                minResizeHeight,
             )
             putInt(
                 AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH,
-                maxResizeWidth
+                maxResizeWidth,
             )
             putInt(
                 AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT,
-                maxResizeHeight
+                maxResizeHeight,
             )
             putParcelableArrayList(
                 AppWidgetManager.OPTION_APPWIDGET_SIZES,
-                arrayListOf(availableSize.toSizeF())
+                arrayListOf(availableSize.toSizeF()),
             )
         } else {
             // TODO to check how this affects the different glance SizeModes
             putInt(
                 AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH,
-                availableSize.width.toPixels(context)
+                availableSize.width.toPixels(context),
             )
             putInt(
                 AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT,
-                availableSize.height.toPixels(context)
+                availableSize.height.toPixels(context),
             )
             putInt(
                 AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH,
-                availableSize.width.toPixels(context)
+                availableSize.width.toPixels(context),
             )
             putInt(
                 AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT,
-                availableSize.height.toPixels(context)
+                availableSize.height.toPixels(context),
             )
         }
     }
