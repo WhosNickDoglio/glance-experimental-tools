@@ -37,12 +37,6 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        // The following argument makes the Android Test Orchestrator run its
-        // "pm clear" command after each test invocation. This command ensures
-        // that the app's state is completely cleared between tests.
-        testInstrumentationRunnerArguments clearPackageData: 'true'
     }
 
     buildTypes {
@@ -61,15 +55,6 @@ android {
     buildFeatures {
         buildConfig false
         compose true
-    }
-
-
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-        }
-        animationsDisabled true
-        execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
     packagingOptions {
         resources {
@@ -101,21 +86,6 @@ dependencies {
     implementation libs.compose.foundation.foundation
     implementation libs.compose.ui.ui
     implementation libs.compose.material.material3
-
-    // ======================
-    // Test dependencies
-    // ======================
-
-    androidTestUtil libs.androidx.test.orchestrator
-
-    androidTestImplementation libs.junit
-    androidTestImplementation libs.truth
-    androidTestImplementation libs.compose.ui.test.junit4
-    androidTestImplementation libs.compose.ui.test.manifest
-    androidTestImplementation libs.androidx.test.core
-    androidTestImplementation libs.androidx.test.runner
-    androidTestImplementation libs.androidx.test.rules
-    androidTestImplementation libs.androidx.test.uiAutomator
 }
 
 apply plugin: "com.vanniktech.maven.publish"

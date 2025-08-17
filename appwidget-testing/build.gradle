@@ -63,14 +63,6 @@ android {
         buildConfig false
         compose true
     }
-
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-        }
-        animationsDisabled true
-        execution 'ANDROIDX_TEST_ORCHESTRATOR'
-    }
     packagingOptions {
         resources {
             excludes += [
