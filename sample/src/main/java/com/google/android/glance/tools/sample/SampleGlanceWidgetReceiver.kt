@@ -76,7 +76,7 @@ fun SampleGlanceWidgetContent() {
             .cornerRadius(16.dp)
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val count = currentState(SampleGlanceWidget.countKey) ?: 0
         val size = LocalSize.current
@@ -91,7 +91,7 @@ fun CountRow(count: Int) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
             provider = ImageProvider(R.drawable.ic_android),
-            contentDescription = "android icon",
+            contentDescription = "android icon"
         )
         Spacer(modifier = GlanceModifier.width(8.dp))
         Text(
@@ -125,6 +125,6 @@ fun SampleGlanceWidgetPreview() {
         modifier = Modifier.fillMaxSize(),
         glanceAppWidget = SampleGlanceWidget,
         state = state,
-        displaySize = displaySize,
+        displaySize = displaySize
     )
 }

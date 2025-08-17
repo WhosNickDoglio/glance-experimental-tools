@@ -61,10 +61,11 @@ public class GlanceScreenshotTestActivity : Activity() {
             FrameLayout(this, null).apply {
                 id = FRAME_LAYOUT_ID
                 background = context.getDrawable(android.R.color.darker_gray)
-                layoutParams = FrameLayout.LayoutParams(
-                    FrameLayout.LayoutParams.MATCH_PARENT,
-                    FrameLayout.LayoutParams.MATCH_PARENT,
-                )
+                layoutParams =
+                    FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT
+                    )
             }
         )
     }
@@ -106,12 +107,14 @@ public class GlanceScreenshotTestActivity : Activity() {
     @OptIn(ExperimentalGlanceRemoteViewsApi::class)
     public fun renderComposable(composable: @Composable () -> Unit) {
         runBlocking {
-            val remoteViews = GlanceRemoteViews().compose(
-                context = applicationContext,
-                size = size,
-                state = state,
-                content = composable
-            ).remoteViews
+            val remoteViews =
+                GlanceRemoteViews()
+                    .compose(
+                        context = applicationContext,
+                        size = size,
+                        state = state,
+                        content = composable
+                    ).remoteViews
 
             val activityFrame = findViewById<FrameLayout>(FRAME_LAYOUT_ID)
             hostView = TestHostView(applicationContext)
@@ -129,11 +132,12 @@ public class GlanceScreenshotTestActivity : Activity() {
         val displayMetrics = resources.displayMetrics
 
         if (wrapContentSize) {
-            hostView.layoutParams = FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                Gravity.CENTER
-            )
+            hostView.layoutParams =
+                FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    Gravity.CENTER
+                )
         } else {
             val hostViewPadding = Rect()
             val width =

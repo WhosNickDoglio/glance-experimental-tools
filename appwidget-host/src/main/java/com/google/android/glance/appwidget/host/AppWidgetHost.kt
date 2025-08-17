@@ -96,9 +96,10 @@ class AppWidgetHostState(
 }
 
 @Composable
-fun rememberAppWidgetHostState(providerInfo: AppWidgetProviderInfo? = null) = remember(providerInfo) {
-    AppWidgetHostState(providerInfo, mutableStateOf(null))
-}
+fun rememberAppWidgetHostState(providerInfo: AppWidgetProviderInfo? = null) =
+    remember(providerInfo) {
+        AppWidgetHostState(providerInfo, mutableStateOf(null))
+    }
 
 /**
  * A layout composable with an [AppWidgetHostView] to display the provided [RemoteViews] from the
@@ -221,24 +222,23 @@ private fun CellGrid(rows: Int, columns: Int, color: Color, modifier: Modifier) 
     }
 }
 
-private fun Modifier.dashedBorder(width: Dp, radius: Dp, color: Color) =
-    drawBehind {
-        drawIntoCanvas {
-            val paint = Paint()
-                .apply {
-                    strokeWidth = width.toPx()
-                    this.color = color
-                    style = PaintingStyle.Stroke
-                    pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
-                }
-            it.drawRoundRect(
-                width.toPx(),
-                width.toPx(),
-                size.width - width.toPx(),
-                size.height - width.toPx(),
-                radius.toPx(),
-                radius.toPx(),
-                paint
-            )
-        }
+private fun Modifier.dashedBorder(width: Dp, radius: Dp, color: Color) = drawBehind {
+    drawIntoCanvas {
+        val paint = Paint()
+            .apply {
+                strokeWidth = width.toPx()
+                this.color = color
+                style = PaintingStyle.Stroke
+                pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
+            }
+        it.drawRoundRect(
+            width.toPx(),
+            width.toPx(),
+            size.width - width.toPx(),
+            size.height - width.toPx(),
+            radius.toPx(),
+            radius.toPx(),
+            paint
+        )
     }
+}

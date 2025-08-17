@@ -46,7 +46,6 @@ import kotlinx.coroutines.withContext
  * Base class to display AppWidgets.
  */
 abstract class AppWidgetViewerActivity : ComponentActivity() {
-
     /**
      * The list of [AppWidgetProvider] to display in the viewer
      */
@@ -73,15 +72,16 @@ abstract class AppWidgetViewerActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val widgetManager = AppWidgetManager.getInstance(this)
-        val providers = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            widgetManager.getInstalledProvidersForPackage(packageName, null)
-        } else {
-            widgetManager.installedProviders.filter { it.provider.packageName == packageName }
-        }.filter { info ->
-            getProviders().any { selectedProvider ->
-                selectedProvider.name == info.provider.className
+        val providers =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                widgetManager.getInstalledProvidersForPackage(packageName, null)
+            } else {
+                widgetManager.installedProviders.filter { it.provider.packageName == packageName }
+            }.filter { info ->
+                getProviders().any { selectedProvider ->
+                    selectedProvider.name == info.provider.className
+                }
             }
-        }
 
         selectedProvider = mutableStateOf(providers.first())
         currentSize = mutableStateOf(selectedProvider.value.getTargetSize(this))
@@ -111,13 +111,14 @@ abstract class AppWidgetViewerActivity : ComponentActivity() {
  */
 @ExperimentalGlanceRemoteViewsApi
 abstract class GlanceViewerActivity : AppWidgetViewerActivity() {
-
     /**
      * Provides an instance of [GlanceAppWidget] to display inside the viewer.
      *
      * @param receiver - The selected [GlanceAppWidgetReceiver] to display
      */
-    abstract suspend fun getGlanceSnapshot(receiver: Class<out GlanceAppWidgetReceiver>): GlanceSnapshot
+    abstract suspend fun getGlanceSnapshot(
+        receiver: Class<out GlanceAppWidgetReceiver>
+    ): GlanceSnapshot
 
     /**
      * Only override this method to directly provide [RemoteViews] instead of [GlanceAppWidget]

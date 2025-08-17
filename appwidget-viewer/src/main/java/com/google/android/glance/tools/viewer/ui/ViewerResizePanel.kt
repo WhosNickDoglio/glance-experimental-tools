@@ -31,10 +31,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun ViewerResizePanel(
-    currentSize: DpSize,
-    onSizeChange: (DpSize) -> Unit
-) {
+internal fun ViewerResizePanel(currentSize: DpSize, onSizeChange: (DpSize) -> Unit) {
     // TODO probably we should get the real max available size from the layout one measured
     val configuration = LocalConfiguration.current
     Column(

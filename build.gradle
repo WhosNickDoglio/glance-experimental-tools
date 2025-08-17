@@ -16,26 +16,16 @@
 
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
-buildscript {
-    dependencies {
-        classpath libs.android.gradlePlugin
-        classpath libs.kotlin.gradlePlugin
-
-        classpath libs.gradleMavenPublishPlugin
-
-        classpath libs.dokka
-
-        classpath libs.metalavaGradle
-    }
-}
-
 plugins {
-    id "com.diffplug.spotless" version "5.9.0"
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.publish) apply false
+    alias(libs.plugins.metalava) apply false
+    alias(libs.plugins.android.app) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.org.jetbrains.kotlin.android) apply false
     alias(libs.plugins.compose.compiler) apply false
 }
-
-
-apply plugin: 'org.jetbrains.dokka'
 
 // TODO do we need?
 tasks.withType(DokkaMultiModuleTask).configureEach {
@@ -93,16 +83,6 @@ subprojects {
             }
         }
     }
-
-    // If we have a POM Artifact ID, we should generate API files
-    // if (project.hasProperty('POM_ARTIFACT_ID')) {
-    //     apply plugin: "me.tylerbwong.gradle.metalava"
-
-    //     metalava {
-    //         filename = "api/current.api"
-    //         reportLintsAsErrors = true
-    //     }
-    // }
 
     // Must be afterEvaluate or else com.vanniktech.maven.publish will overwrite our
     // dokka and version configuration.

@@ -45,21 +45,21 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(sdk = [35], qualifiers = RobolectricDeviceQualifiers.Pixel6)
 class SampleGlanceScreenshotTest {
-
     // https://github.com/robolectric/robolectric/pull/4736#issuecomment-1831034882
     @get:Rule(order = 1)
-    val addActivityToRobolectricRule = object : TestWatcher() {
-        override fun starting(description: Description?) {
-            super.starting(description)
-            val appContext: Application = ApplicationProvider.getApplicationContext()
-            shadowOf(appContext.packageManager).addActivityIfNotPresent(
-                ComponentName(
-                    appContext.packageName,
-                    GlanceScreenshotTestActivity::class.java.name,
+    val addActivityToRobolectricRule =
+        object : TestWatcher() {
+            override fun starting(description: Description?) {
+                super.starting(description)
+                val appContext: Application = ApplicationProvider.getApplicationContext()
+                shadowOf(appContext.packageManager).addActivityIfNotPresent(
+                    ComponentName(
+                        appContext.packageName,
+                        GlanceScreenshotTestActivity::class.java.name
+                    )
                 )
-            )
+            }
         }
-    }
 
     @get:Rule(order = 2)
     val activityScenarioRule =
@@ -103,8 +103,10 @@ class SampleGlanceScreenshotTest {
             onView(ViewMatchers.isRoot())
                 .captureRoboImage(
                     filePath = "src/test/resources/golden/$goldenFileName.png",
-                    roborazziOptions = RoborazziOptions(
-                        compareOptions = RoborazziOptions.CompareOptions(
+                    roborazziOptions =
+                    RoborazziOptions(
+                        compareOptions =
+                        RoborazziOptions.CompareOptions(
                             changeThreshold = 0F
                         )
                     )

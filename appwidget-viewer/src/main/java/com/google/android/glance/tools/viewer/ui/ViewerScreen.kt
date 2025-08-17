@@ -177,12 +177,12 @@ internal fun ViewerScreen(
                                 doExport(
                                     context,
                                     snackbarHostState,
-                                    snapshotHostState,
+                                    snapshotHostState
                                 )
                             }
                         }
                     )
-                },
+                }
             ) { innerPadding ->
                 AppWidgetHost(
                     modifier = Modifier
@@ -201,7 +201,7 @@ internal fun ViewerScreen(
 private suspend fun doExport(
     context: Context,
     snackbarHostState: SnackbarHostState,
-    appWidgetHostState: AppWidgetHostState,
+    appWidgetHostState: AppWidgetHostState
 ) {
     val host = appWidgetHostState.value ?: return
     val uriResult = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
@@ -306,7 +306,7 @@ private fun ViewerBottomBar(
             FloatingActionButton(
                 onClick = {
                     onExport()
-                },
+                }
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Share,

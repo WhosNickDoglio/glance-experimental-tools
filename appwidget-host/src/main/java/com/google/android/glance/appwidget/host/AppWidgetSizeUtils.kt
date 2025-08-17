@@ -61,22 +61,24 @@ fun AppWidgetProviderInfo.getMinSize(context: Context): DpSize = DpSize(
 )
 
 fun AppWidgetProviderInfo.getSingleSize(context: Context): DpSize {
-    val minWidth = min(
-        minWidth,
-        if (resizeMode and AppWidgetProviderInfo.RESIZE_HORIZONTAL != 0) {
-            minResizeWidth
-        } else {
-            Int.MAX_VALUE
-        }
-    )
-    val minHeight = min(
-        minHeight,
-        if (resizeMode and AppWidgetProviderInfo.RESIZE_VERTICAL != 0) {
-            minResizeHeight
-        } else {
-            Int.MAX_VALUE
-        }
-    )
+    val minWidth =
+        min(
+            minWidth,
+            if (resizeMode and AppWidgetProviderInfo.RESIZE_HORIZONTAL != 0) {
+                minResizeWidth
+            } else {
+                Int.MAX_VALUE
+            }
+        )
+    val minHeight =
+        min(
+            minHeight,
+            if (resizeMode and AppWidgetProviderInfo.RESIZE_VERTICAL != 0) {
+                minResizeHeight
+            } else {
+                Int.MAX_VALUE
+            }
+        )
     return DpSize(
         minWidth.pixelsToDp(context),
         minHeight.pixelsToDp(context)
@@ -84,26 +86,30 @@ fun AppWidgetProviderInfo.getSingleSize(context: Context): DpSize {
 }
 
 val Context.appwidgetBackgroundRadius: Dp
-    get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        val size = resources.getDimensionPixelSize(
-            android.R.dimen.system_app_widget_background_radius
-        )
-        (size / resources.displayMetrics.density).dp
-    } else {
-        16.dp
-    }
+    get() =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val size =
+                resources.getDimensionPixelSize(
+                    android.R.dimen.system_app_widget_background_radius
+                )
+            (size / resources.displayMetrics.density).dp
+        } else {
+            16.dp
+        }
 
 val Context.appwidgetBackgroundRadiusPixels: Float
-    get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        resources.getDimensionPixelSize(
-            android.R.dimen.system_app_widget_background_radius
-        ).toFloat()
-    } else {
-        (16 * resources.displayMetrics.density)
-    }
+    get() =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            resources
+                .getDimensionPixelSize(
+                    android.R.dimen.system_app_widget_background_radius
+                ).toFloat()
+        } else {
+            (16 * resources.displayMetrics.density)
+        }
 
-fun AppWidgetProviderInfo.toSizeExtras(context: Context, availableSize: DpSize): Bundle {
-    return Bundle().apply {
+fun AppWidgetProviderInfo.toSizeExtras(context: Context, availableSize: DpSize): Bundle =
+    Bundle().apply {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             putInt(
                 AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH,
@@ -145,4 +151,3 @@ fun AppWidgetProviderInfo.toSizeExtras(context: Context, availableSize: DpSize):
             )
         }
     }
-}

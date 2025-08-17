@@ -88,14 +88,22 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
             val hasResizeWidth = providerInfo.minResizeWidth != providerInfo.minWidth
             InfoText(
                 key = "minResizeWidth",
-                value = if (hasResizeWidth) "${providerInfo.minResizeWidth}" else "No MIN resize width provided.\nminWidth will be used instead",
+                value = if (hasResizeWidth) {
+                    "${providerInfo.minResizeWidth}"
+                } else {
+                    "No MIN resize width provided.\nminWidth will be used instead"
+                },
                 isError = !hasResizeWidth
             )
 
             val hasResizeHeight = providerInfo.minResizeHeight != providerInfo.minHeight
             InfoText(
                 key = "minResizeHeight",
-                value = if (hasResizeHeight) "${providerInfo.minResizeHeight}" else "No MIN resize height provided.\nminHeight will be used instead",
+                value = if (hasResizeHeight) {
+                    "${providerInfo.minResizeHeight}"
+                } else {
+                    "No MIN resize height provided.\nminHeight will be used instead"
+                },
                 isError = !hasResizeHeight
             )
 
@@ -109,7 +117,11 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
                 val hasMaxResizeHeight = providerInfo.maxResizeHeight > 0
                 InfoText(
                     key = "maxResizeHeight",
-                    value = if (hasMaxResizeHeight) "${providerInfo.maxResizeHeight}" else "Missing",
+                    value = if (hasMaxResizeHeight) {
+                        "${providerInfo.maxResizeHeight}"
+                    } else {
+                        "Missing"
+                    },
                     isError = !hasResizeHeight
                 )
             }
@@ -125,28 +137,38 @@ internal fun ViewerInfoPanel(providerInfo: AppWidgetProviderInfo) {
             val hasPreviewLayout = providerInfo.previewLayout != 0
             InfoText(
                 key = "previewLayout",
-                value = if (hasPreviewLayout) "Available" else "Missing. previewImage will be used instead",
+                value = if (hasPreviewLayout) {
+                    "Available"
+                } else {
+                    "Missing. previewImage will be used instead"
+                },
                 isError = !hasPreviewLayout
             )
         }
         if (providerInfo.configure != null) {
             InfoText(
                 key = "Configuration",
-                value = providerInfo.configure.className,
+                value = providerInfo.configure.className
             )
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val isOptional =
-                    providerInfo.widgetFeatures >= AppWidgetProviderInfo.WIDGET_FEATURE_CONFIGURATION_OPTIONAL
+                    providerInfo.widgetFeatures >=
+                        AppWidgetProviderInfo.WIDGET_FEATURE_CONFIGURATION_OPTIONAL
                 InfoText(
                     key = "Configuration Type",
-                    value = if (isOptional) "Optional" else "Mandatory",
+                    value = if (isOptional) "Optional" else "Mandatory"
                 )
                 val isReconfigurable =
                     providerInfo.widgetFeatures ==
                         AppWidgetProviderInfo.WIDGET_FEATURE_RECONFIGURABLE ||
-                        providerInfo.widgetFeatures == AppWidgetProviderInfo.WIDGET_FEATURE_RECONFIGURABLE + AppWidgetProviderInfo.WIDGET_FEATURE_CONFIGURATION_OPTIONAL ||
-                        providerInfo.widgetFeatures == AppWidgetProviderInfo.WIDGET_FEATURE_RECONFIGURABLE + AppWidgetProviderInfo.WIDGET_FEATURE_CONFIGURATION_OPTIONAL + AppWidgetProviderInfo.WIDGET_FEATURE_HIDE_FROM_PICKER
+                        providerInfo.widgetFeatures ==
+                        AppWidgetProviderInfo.WIDGET_FEATURE_RECONFIGURABLE +
+                        AppWidgetProviderInfo.WIDGET_FEATURE_CONFIGURATION_OPTIONAL ||
+                        providerInfo.widgetFeatures ==
+                        AppWidgetProviderInfo.WIDGET_FEATURE_RECONFIGURABLE +
+                        AppWidgetProviderInfo.WIDGET_FEATURE_CONFIGURATION_OPTIONAL +
+                        AppWidgetProviderInfo.WIDGET_FEATURE_HIDE_FROM_PICKER
                 InfoText(
                     key = "Reconfigurable",
                     value = if (isReconfigurable) "Yes" else "No",

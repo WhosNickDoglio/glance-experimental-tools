@@ -159,7 +159,9 @@ class AppWidgetConfigurationState(
  * @return a new or cached [AppWidgetConfigurationState] instance
  */
 @Composable
-fun rememberAppWidgetConfigurationState(configurationInstance: GlanceAppWidget): AppWidgetConfigurationState {
+fun rememberAppWidgetConfigurationState(
+    configurationInstance: GlanceAppWidget
+): AppWidgetConfigurationState {
     val activity = (LocalContext.current as Activity).apply {
         // Set the result to canceled in case the configuration does not finish
         setResult(Activity.RESULT_CANCELED)
@@ -280,7 +282,7 @@ fun AppWidgetConfigurationScaffold(
                 appWidgetConfigurationState.instance.compose(
                     context = context,
                     size = widgetSize,
-                    state = currentState,
+                    state = currentState
                 )
             )
         }
@@ -294,7 +296,7 @@ fun AppWidgetConfigurationScaffold(
         floatingActionButton,
         floatingActionButtonPosition,
         containerColor,
-        contentColor,
+        contentColor
     ) {
         Column(Modifier.fillMaxSize()) {
             AppWidgetHost(

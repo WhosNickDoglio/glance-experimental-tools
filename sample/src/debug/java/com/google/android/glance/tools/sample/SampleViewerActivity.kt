@@ -27,7 +27,6 @@ import com.google.android.glance.tools.viewer.GlanceViewerActivity
 
 @OptIn(ExperimentalGlanceRemoteViewsApi::class)
 class SampleViewerActivity : GlanceViewerActivity() {
-
     private var counter = 0
 
     override fun getProviders() = listOf(
@@ -37,16 +36,16 @@ class SampleViewerActivity : GlanceViewerActivity() {
 
     override suspend fun getGlanceSnapshot(
         receiver: Class<out GlanceAppWidgetReceiver>
-    ): GlanceSnapshot {
-        return when (receiver) {
-            SampleGlanceWidgetReceiver::class.java -> GlanceSnapshot(
+    ): GlanceSnapshot = when (receiver) {
+        SampleGlanceWidgetReceiver::class.java ->
+            GlanceSnapshot(
                 instance = SampleGlanceWidget,
-                state = mutablePreferencesOf(
+                state =
+                mutablePreferencesOf(
                     SampleGlanceWidget.countKey to counter++
                 )
             )
-            else -> throw IllegalArgumentException()
-        }
+        else -> throw IllegalArgumentException()
     }
 
     /**
@@ -55,10 +54,8 @@ class SampleViewerActivity : GlanceViewerActivity() {
     override suspend fun getAppWidgetSnapshot(
         info: AppWidgetProviderInfo,
         size: DpSize
-    ): RemoteViews {
-        return when (info.provider.className) {
-            SampleAppWidgetReceiver::class.java.name -> SampleAppWidget.createWidget(this)
-            else -> super.getAppWidgetSnapshot(info, size)
-        }
+    ): RemoteViews = when (info.provider.className) {
+        SampleAppWidgetReceiver::class.java.name -> SampleAppWidget.createWidget(this)
+        else -> super.getAppWidgetSnapshot(info, size)
     }
 }

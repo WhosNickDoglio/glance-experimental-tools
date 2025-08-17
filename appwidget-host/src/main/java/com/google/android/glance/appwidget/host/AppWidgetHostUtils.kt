@@ -33,9 +33,9 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
+import java.io.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.File
 
 private const val SNAPSHOTS_FOLDER = "appwidget-snapshots"
 
@@ -53,12 +53,15 @@ fun AppWidgetHostState.requestPin(
     successCallback: PendingIntent? = null
 ): Boolean {
     val widgetManager = AppWidgetManager.getInstance(value!!.context)
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && widgetManager.isRequestPinAppWidgetSupported) {
-        val previewBundle = Bundle().apply {
-            if (snapshot != null) {
-                putParcelable(AppWidgetManager.EXTRA_APPWIDGET_PREVIEW, snapshot)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+        widgetManager.isRequestPinAppWidgetSupported
+    ) {
+        val previewBundle =
+            Bundle().apply {
+                if (snapshot != null) {
+                    putParcelable(AppWidgetManager.EXTRA_APPWIDGET_PREVIEW, snapshot)
+                }
             }
-        }
         return widgetManager.requestPinAppWidget(target, previewBundle, successCallback)
     }
     return false
@@ -71,17 +74,18 @@ fun AppWidgetHostState.requestPin(
  * @return the result of the operation with the image URI if successful
  */
 @RequiresApi(Build.VERSION_CODES.Q)
-suspend fun AppWidgetHostView.exportSnapshot(fileName: String? = null): Result<Uri> {
-    return runCatching {
-        withContext(Dispatchers.IO) {
-            val bitmap = (this@exportSnapshot as View).toBitmap()
-            val collection = MediaStore.Images.Media.getContentUri(
+suspend fun AppWidgetHostView.exportSnapshot(fileName: String? = null): Result<Uri> = runCatching {
+    withContext(Dispatchers.IO) {
+        val bitmap = (this@exportSnapshot as View).toBitmap()
+        val collection =
+            MediaStore.Images.Media.getContentUri(
                 MediaStore.VOLUME_EXTERNAL_PRIMARY
             )
-            val dirDest = File(Environment.DIRECTORY_PICTURES, SNAPSHOTS_FOLDER)
-            val date = System.currentTimeMillis()
-            val name = fileName ?: getSnapshotName(date)
-            val newImage = ContentValues().apply {
+        val dirDest = File(Environment.DIRECTORY_PICTURES, SNAPSHOTS_FOLDER)
+        val date = System.currentTimeMillis()
+        val name = fileName ?: getSnapshotName(date)
+        val newImage =
+            ContentValues().apply {
                 put(MediaStore.Images.Media.DISPLAY_NAME, "$name.png")
                 put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
                 put(MediaStore.MediaColumns.DATE_ADDED, date)
@@ -92,14 +96,13 @@ suspend fun AppWidgetHostView.exportSnapshot(fileName: String? = null): Result<U
                 put(MediaStore.MediaColumns.RELATIVE_PATH, "$dirDest${File.separator}")
                 put(MediaStore.Images.Media.IS_PENDING, 1)
             }
-            context.contentResolver.insert(collection, newImage)!!.apply {
-                context.contentResolver.openOutputStream(this, "w").use {
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, it!!)
-                }
-                newImage.clear()
-                newImage.put(MediaStore.Images.Media.IS_PENDING, 0)
-                context.contentResolver.update(this, newImage, null, null)
+        context.contentResolver.insert(collection, newImage)!!.apply {
+            context.contentResolver.openOutputStream(this, "w").use {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, it!!)
             }
+            newImage.clear()
+            newImage.put(MediaStore.Images.Media.IS_PENDING, 0)
+            context.contentResolver.update(this, newImage, null, null)
         }
     }
 }

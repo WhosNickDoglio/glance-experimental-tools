@@ -41,12 +41,10 @@ class SampleAppWidgetReceiver : AppWidgetProvider() {
 }
 
 object SampleAppWidget {
-    fun createWidget(context: Context): RemoteViews {
-        return RemoteViews(
-            context.packageName,
-            R.layout.widget_sample
-        )
-    }
+    fun createWidget(context: Context): RemoteViews = RemoteViews(
+        context.packageName,
+        R.layout.widget_sample
+    )
 }
 
 @Preview

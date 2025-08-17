@@ -17,5 +17,6 @@
 package com.google.android.glance.tools.viewer.ui
 
 internal enum class ViewerPanel {
-    Resize, Info
+    Resize,
+    Info
 }
