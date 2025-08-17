@@ -23,7 +23,7 @@ plugins {
 
 android {
     namespace = "com.google.android.glance.tools.sample"
-    compileSdkVersion = 36
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.google.android.glance.tools.sample"
@@ -40,8 +40,13 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            isMinifyEnabled = false
+            setProguardFiles(
+                listOf(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro",
+                ),
+            )
         }
     }
     compileOptions {
@@ -55,14 +60,14 @@ android {
         compose = true
     }
 
-    packagingOptions {
+    packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
     testOptions {
         unitTests {
-            includeAndroidResources = true
+            isIncludeAndroidResources = true
         }
     }
 }
