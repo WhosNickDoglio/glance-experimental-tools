@@ -25,14 +25,11 @@ plugins {
 
 android {
     namespace = "com.google.android.glance.appwidget.host"
-    compileSdkVersion = 36
-
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
         targetSdk = 35
-
         consumerProguardFiles("consumer-rules.pro")
-
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -40,8 +37,11 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            isMinifyEnabled = false
+            setProguardFiles(listOf(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            ))
         }
     }
     compileOptions {
@@ -54,12 +54,12 @@ android {
     buildFeatures {
         compose = true
     }
-    packagingOptions {
+    packaging {
         resources {
-            excludes += [
-                '/META-INF/AL2.0',
-                '/META-INF/LGPL2.1'
-            ]
+            excludes += listOf(
+                "/META-INF/AL2.0",
+                "/META-INF/LGPL2.1"
+            )
         }
     }
 
@@ -71,8 +71,8 @@ android {
     }
     lint {
         checkReleaseBuilds = false
-        textOutput file("stdout")
-        textReport true
+        textOutput = file("stdout")
+        textReport =  true
     }
 }
 
