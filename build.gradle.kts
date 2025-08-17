@@ -1,3 +1,6 @@
+import java.net.URI
+import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
+
 /*
  * Copyright 2020 The Android Open Source Project
  *
@@ -14,8 +17,6 @@
  * limitations under the License.
  */
 
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-
 plugins {
     alias(libs.plugins.spotless)
     alias(libs.plugins.dokka)
@@ -28,18 +29,59 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
 }
 
-
 // https://docs.gradle.org/8.9/userguide/gradle_daemon.html#daemon_jvm_criteria
 tasks.updateDaemonJvm.configure {
     languageVersion = JavaLanguageVersion.of(libs.versions.jdk.get())
     vendor = JvmVendorSpec.AZUL
 }
 
-// TODO do we need?
-tasks.withType(DokkaMultiModuleTask::class).configureEach {
-    outputDirectory = rootProject.file("docs/api")
-    failOnWarning = true
+dokka {
+    dokkaPublications.html {
+        moduleName.set("Glance Experimental Tools")
+        outputDirectory.set(layout.buildDirectory.dir("docs/html"))
+        includes.from("README.md")
+    }
+
+    dokkaSourceSets.configureEach {
+        reportUndocumented.set(true)
+        skipEmptyPackages.set(true)
+        skipDeprecated.set(true)
+        jdkVersion.set(17)
+
+        // Add Android SDK packages
+        enableAndroidDocumentationLink.set(false)
+
+        // Add samples from :sample module
+        samples.from(rootProject.file("sample/src/main/java/"))
+
+        // AndroidX + Compose docs
+        externalDocumentationLinks.register("Androidx") {
+            url.set(URI("https://developer.android.com/reference/"))
+            packageListUrl.set(URI("https://developer.android.com/reference/androidx/package-list"))
+        }
+        externalDocumentationLinks.register("Kotlin") {
+            url.set(URI("https://developer.android.com/reference/kotlin/"))
+            packageListUrl.set(URI("https://developer.android.com/reference/kotlin/androidx/package-list"))
+        }
+
+        sourceLink {
+            localDirectory.set(project.file("src/main/java"))
+            // URL showing where the source code can be accessed through the web browser
+            remoteUrl.set(URI("https://github.com/WhosNickDoglio/glance-experimental-tools/blob/main/${project.name}/src/main/java"))
+            // Suffix which is used to append the line number to the URL. Use #L for GitHub
+            remoteLineSuffix.set("#L")
+        }
+        documentedVisibilities.set(setOf(VisibilityModifier.Public))
+    }
 }
+
+dependencies {
+    dokka(project(":appwidget-host"))
+    dokka(project(":appwidget-viewer"))
+    dokka(project(":appwidget-configuration"))
+    dokka(project(":appwidget-testing"))
+}
+
 
 subprojects {
     apply(plugin = "com.diffplug.spotless")
@@ -53,8 +95,10 @@ subprojects {
         groovyGradle {
             target("**/*.gradle")
             greclipse().configFile(rootProject.file("spotless/greclipse.properties"))
-            licenseHeaderFile(rootProject.file("spotless/copyright.txt"),
-                    "(buildscript|apply|import|plugins)")
+            licenseHeaderFile(
+                rootProject.file("spotless/copyright.txt"),
+                "(buildscript|apply|import|plugins)",
+            )
         }
     }
 
@@ -62,54 +106,10 @@ subprojects {
         resolutionStrategy.eachDependency {
             // Make sure that we"re using the Android version of Guava
             if (this.requested.group == "com.google.guava"
-                    && this.requested.module.name == "guava"
-                    && this.requested.version?.contains("jre") == true) {
+                && this.requested.module.name == "guava"
+                && this.requested.version?.contains("jre") == true) {
                 this.useVersion(this.requested.version?.replace("jre", "android").orEmpty())
             }
         }
     }
-
-
-    // TODO figure out dokka later
-    // Must be afterEvaluate or else com.vanniktech.maven.publish will overwrite our
-    // dokka and version configuration.
-//    afterEvaluate {
-//        if (tasks.findByName("dokkaHtmlPartial") == null) {
-//            // If dokka isn"t enabled on this module, skip
-//            return@afterEvaluate
-//        }
-//
-//        tasks.named<DokkaMultiModuleTask>("dokkaHtmlPartial") {
-//            dokkaSourceSets.configureEach {
-//                reportUndocumented.set(true)
-//                skipEmptyPackages.set(true)
-//                skipDeprecated.set(true)
-//                jdkVersion.set(17)
-//
-//                // Add Android SDK packages
-//                noAndroidSdkLink.set(false)
-//
-//                // Add samples from :sample module
-//                samples.from(rootProject.file("sample/src/main/java/"))
-//
-//                // AndroidX + Compose docs
-//                externalDocumentationLink {
-//                    url.set(new URL("https://developer.android.com/reference/"))
-//                    packageListUrl.set(new URL("https://developer.android.com/reference/androidx/package-list"))
-//                }
-//                externalDocumentationLink {
-//                    url.set(new URL("https://developer.android.com/reference/kotlin/"))
-//                    packageListUrl.set(new URL("https://developer.android.com/reference/kotlin/androidx/package-list"))
-//                }
-//
-//                sourceLink {
-//                    localDirectory.set(project.file("src/main/java"))
-//                    // URL showing where the source code can be accessed through the web browser
-//                    remoteUrl.set(new URL("https://github.com/google/glance-experimental-tools/blob/main/${project.name}/src/main/java"))
-//                    // Suffix which is used to append the line number to the URL. Use #L for GitHub
-//                    remoteLineSuffix.set("#L")
-//                }
-//            }
-//        }
-//    }
 }

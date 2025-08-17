@@ -32,6 +32,13 @@ kotlin {
     }
 }
 
+dokka {
+    dokkaPublications.html {
+        moduleName.set("AppWidget Host")
+        includes.from("README.md")
+    }
+}
+
 afterEvaluate {
     // Remove all test apps after running UI tests.
     // This is specially important in CI so that test emulators don"t run out of space.

@@ -1,4 +1,4 @@
-# AppWidget Host composable
+# Module AppWidget Host composable
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.google.android.glance.tools/appwidget-host)](https://search.maven.org/search?q=g:com.google.android.glance.tools)
 

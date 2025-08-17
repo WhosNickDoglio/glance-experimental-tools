@@ -1,4 +1,4 @@
-# Glance AppWidget Testing
+# Module Glance AppWidget Testing
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.google.android.glance.tools/appwidget-testing)](https://search.maven.org/search?q=g:com.google.android.glance.tools)
 

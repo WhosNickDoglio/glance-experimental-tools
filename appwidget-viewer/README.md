@@ -1,4 +1,4 @@
-# AppWidget Viewer
+# Module AppWidget Viewer
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.google.android.glance.tools/appwidget-viewer)](https://search.maven.org/search?q=g:com.google.android.glance.tools)
 
