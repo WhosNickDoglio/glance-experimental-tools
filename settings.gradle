@@ -58,8 +58,8 @@ develocity {
     }
 }
 
-include ':sample'
-include ':appwidget-host'
-include ':appwidget-viewer'
-include ':appwidget-configuration'
-include ':appwidget-testing'
+include(":sample")
+include(":appwidget-host")
+include(":appwidget-viewer")
+include(":appwidget-configuration")
+include(":appwidget-testing")
