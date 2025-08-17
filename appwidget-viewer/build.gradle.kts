@@ -91,7 +91,6 @@ dependencies {
 
     compileOnly(libs.glance.appwidget)
 
-    implementation(libs.androidx.core)
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.material.material3)

@@ -4,9 +4,6 @@ glance = "1.1.1"
 gradlePlugin = "8.12.0"
 ktlint = "1.7.1"
 kotlin = "2.2.10"
-androidxtest-core = "1.7.0"
-androidxtest-rules = "1.7.0"
-androidxtest-runner = "1.7.0"
 androidx-test-ext-junit = "1.3.0"
 robolectric = "4.15.1"
 roborazzi = "1.48.0"
@@ -26,15 +23,9 @@ glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = 
 
 google-material = "com.google.android.material:material:1.12.0"
 
-androidx-core = "androidx.core:core-ktx:1.17.0"
 androidx-core-remoteviews = "androidx.core:core-remoteviews:1.1.0"
 androidx-activity-compose = "androidx.activity:activity-compose:1.10.1"
 
-androidx-test-core = { module = "androidx.test:core-ktx", version.ref = "androidxtest-core" }
-androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxtest-runner" }
-androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidxtest-rules" }
-
-# alpha for robolectric x compose fix
 androidx-test-espressoCore = "androidx.test.espresso:espresso-core:3.7.0"
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 

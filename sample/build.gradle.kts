@@ -82,7 +82,6 @@ dependencies {
     debugImplementation(project(":appwidget-viewer"))
 
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.core)
     implementation(libs.androidx.core.remoteviews)
     implementation(libs.glance.appwidget)
     implementation(libs.google.material)
@@ -99,10 +98,7 @@ dependencies {
 
     testImplementation(project(":appwidget-testing"))
     testImplementation(libs.junit)
-    testImplementation(libs.androidx.test.core)
-    testImplementation(libs.androidx.test.runner)
     testImplementation(libs.androidx.test.espressoCore)
-    testImplementation(libs.androidx.test.rules)
     testImplementation(libs.androidx.test.ext.junit)
     testImplementation(libs.robolectric)
     testImplementation(libs.roborazzi)

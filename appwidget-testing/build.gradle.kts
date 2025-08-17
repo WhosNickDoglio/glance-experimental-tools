@@ -89,7 +89,5 @@ android {
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.compose.ui.ui)
-
     implementation(libs.glance.appwidget)
 }
