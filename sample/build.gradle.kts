@@ -33,11 +33,9 @@ kotlin {
 android {
     namespace = "com.google.android.glance.tools.sample"
     compileSdk = 36
-
     defaultConfig {
         applicationId = "com.google.android.glance.tools.sample"
         minSdk = 26
-        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 

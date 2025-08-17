@@ -32,17 +32,13 @@ kotlin {
     }
 }
 
-
 android {
     namespace = "com.google.android.glance.tools.viewer"
     compileSdk = 36
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 35
-
         consumerProguardFiles("consumer-rules.pro")
-
         vectorDrawables {
             useSupportLibrary = true
         }

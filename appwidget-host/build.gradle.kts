@@ -37,7 +37,6 @@ android {
     compileSdk = 36
     defaultConfig {
         minSdk = 21
-        targetSdk = 35
         consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
