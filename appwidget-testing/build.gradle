@@ -60,7 +60,6 @@ android {
         jvmTarget = '17'
     }
     buildFeatures {
-        buildConfig false
         compose true
     }
     packagingOptions {
