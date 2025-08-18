@@ -57,6 +57,7 @@ Make sure to read the [Contributing](CONTRIBUTING.md) page first though.
 ## License
 
 ```
+Copyright 2025 Nicholas Doglio
 Copyright 2020 The Android Open Source Project
  
 Licensed under the Apache License, Version 2.0 (the "License");
