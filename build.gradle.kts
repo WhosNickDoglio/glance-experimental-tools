@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
 plugins {
     alias(libs.plugins.spotless)
@@ -37,12 +36,6 @@ doctor {
 tasks.updateDaemonJvm.configure {
     languageVersion = JavaLanguageVersion.of(libs.versions.jdk.get())
     vendor = JvmVendorSpec.AZUL
-}
-
-// TODO do we need?
-tasks.withType(DokkaMultiModuleTask::class).configureEach {
-    outputDirectory = rootProject.file("docs/api")
-    failOnWarning = true
 }
 
 subprojects {
