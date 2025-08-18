@@ -30,7 +30,6 @@ kotlin {
     }
 }
 
-
 android {
     namespace = "com.google.android.glance.tools.sample"
     compileSdk = 36
@@ -43,18 +42,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
-        }
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            setProguardFiles(
-                listOf(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro",
-                ),
-            )
         }
     }
     compileOptions {
