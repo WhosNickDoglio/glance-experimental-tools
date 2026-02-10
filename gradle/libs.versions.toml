@@ -42,7 +42,7 @@ doctor = { id = "com.osacky.doctor", version = "0.12.1" }
 dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version = "3.5.1" }
 publish = { id = "com.vanniktech.maven.publish", version = "0.35.0" }
-metalava = { id = "me.tylerbwong.gradle.metalava", version = "0.3.5" }
+metalava = { id = "me.tylerbwong.gradle.metalava", version = "0.5.0" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi"}
 spotless = { id = "com.diffplug.spotless", version = "8.2.1"}
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
