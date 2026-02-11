@@ -1,5 +1,5 @@
 [versions]
-androidx-compose-bom = "2026.01.01"
+androidx-compose-bom = "2026.02.00"
 glance = "1.1.1"
 gradlePlugin = "8.13.2"
 ktlint = "1.7.1"
