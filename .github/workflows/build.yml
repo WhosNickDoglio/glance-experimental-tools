@@ -9,7 +9,7 @@ jobs:
           submodules: true
       - uses: ./.github/actions/setup
       - name: Gradle Wrapper Validation
-        uses: gradle/actions/wrapper-validation@v5
+        uses: gradle/actions/wrapper-validation@v6
   Build:
     runs-on: ubuntu-latest
     if: always()
