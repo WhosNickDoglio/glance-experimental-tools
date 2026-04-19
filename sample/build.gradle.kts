@@ -18,7 +18,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.app)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.roborazzi)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dependencyAnalysis)

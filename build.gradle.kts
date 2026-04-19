@@ -25,7 +25,6 @@ plugins {
     alias(libs.plugins.metalava) apply false
     alias(libs.plugins.android.app) apply false
     alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.org.jetbrains.kotlin.android) apply false
     alias(libs.plugins.compose.compiler) apply false
 }
 
