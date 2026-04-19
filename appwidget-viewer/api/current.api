@@ -3,7 +3,7 @@ package com.google.android.glance.tools.viewer {
 
   public abstract class AppWidgetViewerActivity extends androidx.activity.ComponentActivity {
     ctor public AppWidgetViewerActivity();
-    method public abstract suspend Object? getAppWidgetSnapshot(android.appwidget.AppWidgetProviderInfo info, long size, kotlin.coroutines.Continuation<? super android.widget.RemoteViews>);
+    method @KotlinOnly public abstract suspend Object? getAppWidgetSnapshot(android.appwidget.AppWidgetProviderInfo info, androidx.compose.ui.unit.DpSize size, kotlin.coroutines.Continuation<? super android.widget.RemoteViews>);
     method public abstract java.util.List<java.lang.Class<? extends android.appwidget.AppWidgetProvider>> getProviders();
   }
 
@@ -11,16 +11,16 @@ package com.google.android.glance.tools.viewer {
     ctor public GlanceSnapshot(androidx.glance.appwidget.GlanceAppWidget instance, optional Object? state);
     method public androidx.glance.appwidget.GlanceAppWidget component1();
     method public Object? component2();
-    method public com.google.android.glance.tools.viewer.GlanceSnapshot copy(androidx.glance.appwidget.GlanceAppWidget instance, Object? state);
-    method public androidx.glance.appwidget.GlanceAppWidget getInstance();
-    method public Object? getState();
-    property public final androidx.glance.appwidget.GlanceAppWidget instance;
-    property public final Object? state;
+    method public com.google.android.glance.tools.viewer.GlanceSnapshot copy(optional androidx.glance.appwidget.GlanceAppWidget instance, optional Object? state);
+    method @InaccessibleFromKotlin public androidx.glance.appwidget.GlanceAppWidget getInstance();
+    method @InaccessibleFromKotlin public Object? getState();
+    property public androidx.glance.appwidget.GlanceAppWidget instance;
+    property public Object? state;
   }
 
   @androidx.glance.appwidget.ExperimentalGlanceRemoteViewsApi public abstract class GlanceViewerActivity extends com.google.android.glance.tools.viewer.AppWidgetViewerActivity {
     ctor public GlanceViewerActivity();
-    method public suspend Object? getAppWidgetSnapshot(android.appwidget.AppWidgetProviderInfo info, long size, kotlin.coroutines.Continuation<? super android.widget.RemoteViews>);
+    method @KotlinOnly public suspend Object? getAppWidgetSnapshot(android.appwidget.AppWidgetProviderInfo info, androidx.compose.ui.unit.DpSize size, kotlin.coroutines.Continuation<? super android.widget.RemoteViews>);
     method public abstract suspend Object? getGlanceSnapshot(Class<? extends androidx.glance.appwidget.GlanceAppWidgetReceiver> receiver, kotlin.coroutines.Continuation<? super com.google.android.glance.tools.viewer.GlanceSnapshot>);
   }
 

@@ -87,5 +87,6 @@ dependencies {
 
 metalava {
     filename = "api/current.api"
-    reportLintsAsErrors = true
+    // https://github.com/tylerbwong/metalava-gradle/issues/124
+    reportLintsAsErrors = false
 }
