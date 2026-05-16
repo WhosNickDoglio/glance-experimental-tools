@@ -105,12 +105,12 @@ class SampleGlanceScreenshotTest {
                 .captureRoboImage(
                     filePath = "src/test/resources/golden/$goldenFileName.png",
                     roborazziOptions =
-                    RoborazziOptions(
-                        compareOptions =
-                        RoborazziOptions.CompareOptions(
-                            changeThreshold = 0F,
+                        RoborazziOptions(
+                            compareOptions =
+                                RoborazziOptions.CompareOptions(
+                                    changeThreshold = 0F,
+                                ),
                         ),
-                    ),
                 )
         }
     }

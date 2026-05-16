@@ -198,6 +198,7 @@ internal fun ViewerScreen(
                             currentSize = currentSize,
                             onSizeChange = onResize,
                         )
+
                         ViewerPanel.Info -> ViewerInfoPanel(selectedProvider)
                     }
                 },

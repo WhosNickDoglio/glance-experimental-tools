@@ -42,10 +42,11 @@ class SampleViewerActivity : GlanceViewerActivity() {
             GlanceSnapshot(
                 instance = SampleGlanceWidget,
                 state =
-                mutablePreferencesOf(
-                    SampleGlanceWidget.countKey to counter++,
-                ),
+                    mutablePreferencesOf(
+                        SampleGlanceWidget.countKey to counter++,
+                    ),
             )
+
         else -> throw IllegalArgumentException()
     }
 

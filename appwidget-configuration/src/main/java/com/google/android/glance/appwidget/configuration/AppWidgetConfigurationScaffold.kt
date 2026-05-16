@@ -262,11 +262,13 @@ public fun AppWidgetConfigurationScaffold(
             val sizes = GlanceAppWidgetManager(context).getAppWidgetSizes(glanceId)
             widgetSize = when (orientation) {
                 Configuration.ORIENTATION_PORTRAIT -> sizes.first()
+
                 Configuration.ORIENTATION_LANDSCAPE -> sizes.getOrElse(1) {
                     // Edge case: only one size available. Swap size values
                     val portraitSize = sizes.first()
                     portraitSize.copy(width = portraitSize.height, height = portraitSize.width)
                 }
+
                 else -> throw IllegalArgumentException("Unknown orientation value")
             }
         }
