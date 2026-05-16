@@ -28,9 +28,6 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
 }
 
-doctor {
-    warnWhenNotUsingParallelGC = false
-}
 
 // https://docs.gradle.org/8.9/userguide/gradle_daemon.html#daemon_jvm_criteria
 tasks.updateDaemonJvm.configure {
