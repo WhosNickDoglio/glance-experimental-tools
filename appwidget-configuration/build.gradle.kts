@@ -32,6 +32,14 @@ kotlin {
     }
 }
 
+afterEvaluate {
+    // Remove all test apps after running UI tests.
+    // This is specially important in CI so that test emulators don"t run out of space.
+    tasks.named("connectedDebugAndroidTest").configure {
+        this.finalizedBy("uninstallDebugAndroidTest")
+    }
+}
+
 android {
     namespace = "com.google.android.glance.appwidget.configuration"
     compileSdk = 36

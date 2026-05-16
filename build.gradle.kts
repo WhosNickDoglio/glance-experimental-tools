@@ -58,14 +58,6 @@ subprojects {
         }
     }
 
-    // Remove all test apps after running UI tests.
-    // This is specially important in CI so that test emulators don"t run out of space.
-    tasks.whenTaskAdded {
-        if (this.name == "connectedDebugAndroidTest") {
-            this.finalizedBy("uninstallDebugAndroidTest")
-        }
-    }
-
     configurations.configureEach {
         resolutionStrategy.eachDependency {
             // Make sure that we"re using the Android version of Guava
