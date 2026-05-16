@@ -41,7 +41,7 @@ afterEvaluate {
 
 android {
     namespace = "com.google.android.glance.appwidget.testing"
-    compileSdk = 36
+    compileSdk = 37
     defaultConfig {
         minSdk = 26
         vectorDrawables {
