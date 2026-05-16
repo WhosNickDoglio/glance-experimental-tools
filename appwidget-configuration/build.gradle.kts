@@ -1,3 +1,4 @@
+
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 /*
@@ -29,6 +30,13 @@ kotlin {
     explicitApi()
     compilerOptions {
         jvmTarget = JvmTarget.JVM_17
+    }
+}
+
+dokka {
+    dokkaPublications.html {
+        moduleName.set("AppWidget Configuration")
+        includes.from("Module.md")
     }
 }
 

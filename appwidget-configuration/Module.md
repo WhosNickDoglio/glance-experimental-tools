@@ -1,4 +1,4 @@
-# GlanceAppWidget Configuration composable
+# Module GlanceAppWidget Configuration composable
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.google.android.glance.tools/appwidget-configuration)](https://search.maven.org/search?q=g:com.google.android.glance.tools)
 
