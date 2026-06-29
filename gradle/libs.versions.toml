@@ -44,5 +44,5 @@ dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version = 
 publish = { id = "com.vanniktech.maven.publish", version = "0.37.0" }
 metalava = { id = "me.tylerbwong.gradle.metalava", version = "0.5.0" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi"}
-spotless = { id = "com.diffplug.spotless", version = "8.7.0"}
+spotless = { id = "com.diffplug.spotless", version = "8.8.0"}
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
