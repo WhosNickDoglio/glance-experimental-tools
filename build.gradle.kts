@@ -20,7 +20,6 @@ import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 plugins {
     alias(libs.plugins.spotless)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.doctor)
     alias(libs.plugins.dependencyAnalysis)
     alias(libs.plugins.publish) apply false
     alias(libs.plugins.metalava) apply false
