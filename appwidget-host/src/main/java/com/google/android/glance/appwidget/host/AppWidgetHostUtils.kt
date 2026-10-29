@@ -75,6 +75,7 @@ public fun AppWidgetHostState.requestPin(
  * @return the result of the operation with the image URI if successful
  */
 @RequiresApi(Build.VERSION_CODES.Q)
+@Suppress("ThreadConstraint")
 public suspend fun AppWidgetHostView.exportSnapshot(fileName: String? = null): Result<Uri> =
     runCatching {
         withContext(Dispatchers.IO) {

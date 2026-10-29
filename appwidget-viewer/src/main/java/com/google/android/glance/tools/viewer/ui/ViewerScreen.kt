@@ -26,12 +26,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.PushPin
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material.icons.rounded.Done
-import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material3.BottomAppBar
@@ -348,7 +348,7 @@ private fun ViewerDrawer(
                         imageVector = if (selectedProvider == item) {
                             Icons.Rounded.Done
                         } else {
-                            Icons.Rounded.KeyboardArrowRight
+                            Icons.AutoMirrored.Rounded.KeyboardArrowRight
                         },
                         contentDescription = null,
                     )
