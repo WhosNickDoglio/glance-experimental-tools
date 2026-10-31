@@ -39,7 +39,7 @@ roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = 
 android-app = { id = "com.android.application", version.ref = "gradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "gradlePlugin" }
 dokka = { id = "org.jetbrains.dokka", version = "2.2.0" }
-dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version = "3.20.0" }
+dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version = "3.20.1" }
 publish = { id = "com.vanniktech.maven.publish", version = "0.37.0" }
 metalava = { id = "me.tylerbwong.gradle.metalava", version = "0.5.1" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi"}
